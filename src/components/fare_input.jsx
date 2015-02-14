@@ -2,10 +2,12 @@ var React = require('react');
 
 export default React.createClass({
 
+  defaultMaxToSpend : 40.00,
+
   getInitialState(){
     return {
       remainingBalance : null,
-      maxToSpend : 40.00
+      maxToSpend : null
     }
   },
 
@@ -30,7 +32,7 @@ export default React.createClass({
         </label>
         <label htmlFor="max">
           <h3>Max to spend</h3>
-          <input name="max" type="number" value={this.state.maxToSpend} onChange={this.setMaxToSpend} required placeholder="40.00"/>
+          <input name="max" type="number" defaultValue={this.defaultMaxToSpend} value={this.state.maxToSpend} onChange={this.setMaxToSpend} required placeholder="40.00"/>
         </label>
       </form>
     );

@@ -1,26 +1,16 @@
-var React = require('react');
+import React from 'react';
+import Fares from '../stores/fares';
 
 export default React.createClass({
 
   defaultMaxToSpend : 40.00,
 
-  getInitialState(){
-    return {
-      remainingBalance : null,
-      maxToSpend : null
-    }
-  },
-
   setMaxToSpend(event){
-    this.setState({
-      maxToSpend : event.target.valueAsNumber
-    });
+    Fares.setMaxToSpend(event.target.valueAsNumber);
   },
 
   setRemainingBalance(event){
-    this.setState({
-      remainingBalance : event.target.valueAsNumber
-    });
+    Fares.setRemainingBalance(event.target.valueAsNumber);
   },
 
   render(){
@@ -28,11 +18,11 @@ export default React.createClass({
       <form name="farepurchase">
         <label htmlFor="remaining">
           <h3>Remaining balance</h3>
-          <input name="remaining" value={this.state.remainingBalance} onChange={this.setRemainingBalance} type="number" required placeholder="0.00"/>
+          <input name="remaining" value={Fares.remainingBalance} onChange={this.setRemainingBalance} type="number" required placeholder="0.00"/>
         </label>
         <label htmlFor="max">
           <h3>Max to spend</h3>
-          <input name="max" type="number" defaultValue={this.defaultMaxToSpend} value={this.state.maxToSpend} onChange={this.setMaxToSpend} required placeholder="40.00"/>
+          <input name="max" type="number" defaultValue={this.defaultMaxToSpend} value={Fares.maxToSpend} onChange={this.setMaxToSpend} required placeholder="40.00"/>
         </label>
       </form>
     );

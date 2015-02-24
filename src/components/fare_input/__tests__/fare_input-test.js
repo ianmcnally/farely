@@ -1,12 +1,18 @@
-import {addons} from 'react/addons';
-var TestUtils = addons.TestUtils;
-
 jest.dontMock('../fare_input.jsx');
+
+import React from 'react';
+import {addons} from 'react/addons';
+import FareInput from '../fare_input.jsx';
+let TestUtils = addons.TestUtils;
+
 
 describe('FareInput', () => {
 
-  it('runs', () => {
-    expect(2).toEqual(2);
+  it('initializes the remainingBalance input value to null', () => {
+    var fareInput = TestUtils.renderIntoDocument(<FareInput />);
+    var balanceInput = fareInput.refs.balanceInput;
+    expect(balanceInput.value)
+      .toEqual(null);
   });
 
 });

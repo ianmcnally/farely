@@ -28,7 +28,7 @@ export default React.createClass({
       <form name="farepurchase">
         <label htmlFor="remaining">
           <h3>Remaining balance</h3>
-          <input name="remaining" value={this.state.remainingBalance} onChange={this.setRemainingBalance} type="number" required placeholder="0.00"/>
+          <input name="remaining" ref="balanceInput" value={this.state.remainingBalance} onChange={this.setRemainingBalance} type="number" required placeholder="0.00"/>
         </label>
         <label htmlFor="max">
           <h3>Max to spend</h3>

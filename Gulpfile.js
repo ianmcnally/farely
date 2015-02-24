@@ -1,13 +1,13 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var connect = require('gulp-connect');
-var to5ify = require('6to5ify');
+var babelify = require('babelify');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
 
 gulp.task('compile', ['index.html'], function(){
   browserify('./src/app.jsx')
-    .transform(to5ify)
+    .transform(babelify)
     .bundle()
     .pipe(source('main.js'))
     .pipe(gulp.dest('./dist/javascript'));

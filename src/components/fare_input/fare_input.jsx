@@ -32,7 +32,7 @@ export default React.createClass({
         </label>
         <label htmlFor="max">
           <h3>Max to spend</h3>
-          <input name="max" type="number" defaultValue={40} value={this.state.maxToSpend} onChange={this.setMaxToSpend} required placeholder="40.00"/>
+          <input name="max" ref="maxInput" type="number" defaultValue={40} value={this.state.maxToSpend} onChange={this.setMaxToSpend} required placeholder="40.00"/>
         </label>
       </form>
     );

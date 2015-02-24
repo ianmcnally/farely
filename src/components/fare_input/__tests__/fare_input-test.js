@@ -26,14 +26,6 @@ describe('FareInput', () => {
         .toEqual(null);
     });
 
-    it('sets the remainingBalance when the input changes', () => {
-      let newBalance = '10.05';
-      TestUtils.Simulate.change(balanceInput.getDOMNode(), {target: {value: newBalance}});
-      console.log(balanceInput);
-      expect(balanceInput.value)
-        .toEqual(newBalance);
-    });
-
   })
 
   describe('maxToSpend', () => {

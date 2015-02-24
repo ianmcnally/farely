@@ -1,6 +1,6 @@
 import React from 'react';
-import Fares from '../stores/fares';
-import FareActions from '../actions/fare_actions';
+import Fares from '../../stores/fares';
+import FareActions from '../../actions/fare_actions';
 
 export default React.createClass({
 

@@ -33,10 +33,10 @@ gulp.task('jest', function(){
   gulp.src('src/**/*-test.js')
     .pipe(jest({
       rootDir : 'src',
-      scriptPreprocessor : "../node_modules/babel-jest",
-      testFileExtensions : ["es6", "js"],
-      moduleFileExtensions : ["js", "json", "es6"],
-      unmockedModulePathPatterns : ["./node_modules/react"]
+      scriptPreprocessor : '../node_modules/babel-jest',
+      testFileExtensions : ['es6', 'js'],
+      moduleFileExtensions : ['js', 'json', 'es6'],
+      unmockedModulePathPatterns : ['./node_modules/react']
     }));
 });
 

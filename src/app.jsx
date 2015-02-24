@@ -1,5 +1,5 @@
 import React from 'react';
-import FareInput from './components/fare_input.jsx';
+import FareInput from './components/fare_input/fare_input.jsx';
 import Instructions from './components/instructions.jsx';
 import PurchaseOptions from './components/purchase_options.jsx';
 

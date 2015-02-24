@@ -1,28 +1,32 @@
 import {EventEmitter} from 'events';
+import AppDispatcher from '../dispatchers/app';
+import FARE_UPDATES from '../constants/fare_updates';
 
 const EVENTS = {
-  MAX_TO_SPEND_CHANGE : 'max_to_spend_change',
-  REMAINING_BALANCE_CHANGE : 'remaining_balance_change'
+  CHANGE : 'change'
 }
 
 class Fares extends EventEmitter {
 
-  setRemainingBalance(balance){
+  emitChange () {
+    this.emit(EVENTS.CHANGE);
+  }
+
+  setRemainingBalance (balance) {
     this.remainingBalance = balance;
-    this.emit(EVENTS.REMAINING_BALANCE_CHANGE);
+    this.emitChange();
   }
 
-  setMaxToSpend(max){
+  setMaxToSpend (max) {
     this.maxToSpend = max;
-    this.emit(EVENTS.MAX_TO_SPEND_CHANGE);
+    this.emitChange();
   }
 
-  addFareChangeListener(callback){
-    this.on(EVENTS.MAX_TO_SPEND_CHANGE, callback);
-    this.on(EVENTS.REMAINING_BALANCE_CHANGE, callback);
+  addChangeListener (callback) {
+    this.on(EVENTS.CHANGE, callback);
   }
 
-  getPurchaseOptions(){
+  getPurchaseOptions (remainingBalance, maxToSpend) {
     return  [
       {
         amount : new Date().getSeconds(),
@@ -33,7 +37,24 @@ class Fares extends EventEmitter {
 
 }
 
-var fares = new Fares()
-fares.EVENTS = EVENTS;
+var fares = new Fares();
+
+AppDispatcher.register( (action) => {
+
+  switch (action.actionType) {
+
+    case FARE_UPDATES.REMAINING_BALANCE_UPDATE:
+      fares.setRemainingBalance(action.balance);
+      break;
+
+    case FARE_UPDATES.MAX_TO_SPEND_UPDATE:
+      fares.setMaxToSpend(action.maxToSpend);
+      break;
+
+    default:
+
+  }
+
+});
 
 export default fares;

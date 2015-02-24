@@ -4,7 +4,7 @@ import Instructions from './components/instructions.jsx';
 import PurchaseOptions from './components/purchase_options.jsx';
 
 var App = React.createClass({
-  render (){
+  render () {
     return (
       <main className="fare-calculator">
         <FareInput />

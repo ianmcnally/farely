@@ -1,5 +1,7 @@
 # farely-react
 
+A port to React of [Farely](http://github.com/imcnally/farely)
+
 ## Setup
 Note: Having `node` installed is a prerequisite.
 

@@ -10,7 +10,7 @@ export default React.createClass({
   },
 
   componentWillMount(){
-    Fares.addFareChangeListener(this.updateOptions);
+    Fares.addChangeListener(this.updateOptions);
   },
 
   updateOptions(){

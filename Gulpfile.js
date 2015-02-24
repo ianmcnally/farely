@@ -1,9 +1,12 @@
+require('harmonize')();
+
 var gulp = require('gulp');
 var browserify = require('browserify');
 var connect = require('gulp-connect');
 var babelify = require('babelify');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
+var jest = require('gulp-jest');
 
 gulp.task('compile', ['index.html'], function(){
   browserify('./src/app.jsx')
@@ -26,9 +29,22 @@ gulp.task('index.html', function(){
     .pipe(gulp.dest('dist'))
 })
 
+gulp.task('jest', function(){
+  gulp.src('src/**/*-test.js')
+    .pipe(jest({
+      rootDir : 'src',
+      scriptPreprocessor : "../node_modules/babel-jest",
+      testFileExtensions : ["es6", "js"],
+      moduleFileExtensions : ["js", "json", "es6"],
+      unmockedModulePathPatterns : ["./node_modules/react"]
+    }));
+});
+
 gulp.task('watch', function(){
   gulp.watch(['src/**/*.js*'], ['compile']);
   gulp.watch(['src/**/*.html*'], ['index.html']);
 });
 
 gulp.task('default', ['compile', 'connect', 'watch']);
+
+gulp.task('test', ['jest']);

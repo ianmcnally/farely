@@ -11,3 +11,7 @@ Note: Having `node` installed is a prerequisite.
 ## Dev
 
 1. `gulp` - Compile, start server, watch for file changes
+
+## Test
+
+2. `gulp test` - Run test suite

@@ -1,36 +1,44 @@
 import React from 'react';
 import Fares from '../../stores/fares';
 
+let component;
+
 export default class PurchaseOptions extends React.Component {
 
   constructor (props) {
     super(props);
-    this.state = {
+    component = this;
+    component.state = {
       purchaseOptions : []
     };
   }
 
   componentWillMount () {
-    Fares.addChangeListener(this.updateOptions);
+    Fares.addChangeListener(component.updateOptions);
   }
 
   updateOptions () {
-    this.setState({
+    component.setState({
       purchaseOptions : Fares.getPurchaseOptions()
     });
   }
 
   render () {
-    var options = this.state.purchaseOptions.map((option, i) =>
+    return (
+      <ul>
+        {component._renderOptions()}
+      </ul>
+    );
+  }
+
+  _renderOptions () {
+      return component.state.purchaseOptions.map((option, i) =>
+
       <li key={i}>
         <span className="amount">{option.amount}</span> for {option.rides} rides
       </li>
+
     )
-    return (
-      <ul>
-        {options}
-      </ul>
-    );
   }
 
 }

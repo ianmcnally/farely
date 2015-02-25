@@ -2,11 +2,14 @@ import React from 'react';
 import Fares from '../../stores/fares';
 import FareActions from '../../actions/fare_actions';
 
+let component;
+
 export default class FareInput extends React.Component {
 
   constructor (props) {
     super(props);
-    this.state = {
+    component = this;
+    component.state = {
       remainingBalance : null,
       maxToSpend : null
     }
@@ -15,13 +18,13 @@ export default class FareInput extends React.Component {
   setMaxToSpend (event) {
     var maxToSpend = event.target.valueAsNumber;
     FareActions.updateMaxToSpend(maxToSpend);
-    this.setState({maxToSpend});
+    component.setState({maxToSpend});
   }
 
   setRemainingBalance (event) {
     var remainingBalance = event.target.valueAsNumber;
     FareActions.updateRemainingBalance(remainingBalance);
-    this.setState({remainingBalance});
+    component.setState({remainingBalance});
   }
 
   render () {
@@ -29,11 +32,11 @@ export default class FareInput extends React.Component {
       <form name="farepurchase">
         <label htmlFor="remaining">
           <h3>Remaining balance</h3>
-          <input name="remaining" ref="balanceInput" value={this.state.remainingBalance} onChange={this.setRemainingBalance} type="number" required placeholder="0.00"/>
+          <input name="remaining" ref="balanceInput" value={component.state.remainingBalance} onChange={component.setRemainingBalance} type="number" required placeholder="0.00"/>
         </label>
         <label htmlFor="max">
           <h3>Max to spend</h3>
-          <input name="max" ref="maxInput" type="number" defaultValue={40} value={this.state.maxToSpend} onChange={this.setMaxToSpend} required placeholder="40.00"/>
+          <input name="max" ref="maxInput" type="number" defaultValue={40} value={component.state.maxToSpend} onChange={component.setMaxToSpend} required placeholder="40.00"/>
         </label>
       </form>
     );

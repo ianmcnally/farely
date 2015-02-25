@@ -1,0 +1,68 @@
+.fare-calculator {
+  $width: 20rem;
+  width: $width;
+  margin: 1.5rem auto 0 auto;
+
+  h3 {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    line-height: 2.2;
+  }
+
+  label {
+    margin-bottom: 1rem;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      left: .4rem;
+      top: -1.7rem;
+      display: block;
+      font-size: 3.3rem;
+    }
+  }
+
+  input {
+    padding-left: 2rem;
+    font-size: 3.3rem;
+    line-height: 1;
+    height: 5rem;
+    width: 100%;
+    @include placeholder {
+      font-color: $grey;
+      font-size: 3.3rem;
+      line-height: 1;
+      padding-top: .2rem;
+    }
+  }
+
+  .purchase-amounts {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .purchase-amount {
+    margin-bottom: .6rem;
+  }
+
+  .amount:before, label:after {
+    content: "$";
+    color: $teal;
+  }
+
+  .amount {
+    &:before {
+      margin-right: .1rem;
+    }
+    font-size: 2rem;
+    border-bottom: .1rem dotted $black;
+    min-width: 5.4rem;
+    display: inline-block;
+  }
+
+  p {
+    font-size: 1.4rem;
+    line-height: 1.1;
+    margin-top: 1.6rem;
+  }
+}

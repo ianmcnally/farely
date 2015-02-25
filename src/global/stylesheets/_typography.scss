@@ -1,0 +1,67 @@
+$sans_serif: "Source Sans Pro", Arial, sans-serif;
+
+html {
+  font-family: $sans_serif;
+  color: $black;
+  font-weight: 300;
+  font-size: 62.5%
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+small, p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 1.125;
+  margin-top: 0.375rem;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-top: 0.6rem;
+  margin-bottom: 0;
+}
+
+h3 {
+  font-size: 2.1667rem;
+  line-height: 1.3846;
+  margin-top: 0.6923rem;
+  margin-bottom: 0;
+}
+
+h4 {
+  font-size: 1.3333rem;
+  line-height: 1.125;
+  margin-top: 1.125rem;
+  margin-bottom: 0;
+}
+
+.huge {
+  font-weight: 300;
+  font-size: 8.3333rem;
+  line-height: 1.08;
+  margin-top: 0.18rem;
+  margin-bottom: 0;
+}
+
+strong {
+  font-weight: 300;
+}
+
+i {
+  font-style: normal;
+}
+
+@mixin smoothing() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

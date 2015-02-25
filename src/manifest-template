@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# Revised on :revision-date
+
+CACHE:
+/index.html
+/javascript/main.js
+http://fonts.googleapis.com/css?family=Source+Sans+Pro:300
+/stylesheets/main.css
+/stylesheets/normalize.css
+/icon.png
+/favicon.ico
+
+NETWORK:
+*

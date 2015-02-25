@@ -25,7 +25,7 @@ export default class PurchaseOptions extends React.Component {
 
   render () {
     return (
-      <ul>
+      <ul className="purchase-amounts">
         {component._renderOptions()}
       </ul>
     );
@@ -34,7 +34,7 @@ export default class PurchaseOptions extends React.Component {
   _renderOptions () {
       return component.state.purchaseOptions.map((option, i) =>
 
-      <li key={i}>
+      <li key={i} className="purchase-amount">
         <span className="amount">{option.amount}</span> for {option.rides} rides
       </li>
 

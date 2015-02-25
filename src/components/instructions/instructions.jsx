@@ -26,7 +26,7 @@ export default class Instructions extends React.Component {
   render(){
     return (
       <p hidden={!component.state.showInstructions}>
-        To be or not to be.
+        Enter your MetroCard's remaining balance to calculate the exact amount to put on it. No nickels and dimes wasted.
       </p>
     );
   }

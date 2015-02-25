@@ -15,9 +15,9 @@ export default class FareInput extends React.Component {
   }
 
   setFareParameters () {
-    let remainingBalance = component.refs.balanceInput.getDOMNode().valueAsNumber;
-    let maxToSpend = component.refs.maxInput.getDOMNode().valueAsNumber;
-    FareActions.updateFareParameters(remainingBalance, maxToSpend);
+    let remainingBalance = component.refs.balanceInput.getDOMNode().value;
+    let maxToSpend = component.refs.maxInput.getDOMNode().value;
+    FareActions.updateFareParameters(Number(remainingBalance), Number(maxToSpend));
     component.setState({remainingBalance, maxToSpend});
   }
 
@@ -26,7 +26,7 @@ export default class FareInput extends React.Component {
       <form name="farepurchase">
         <label htmlFor="remaining">
           <h3>Remaining balance</h3>
-          <input name="remaining" ref="balanceInput" value={component.state.remainingBalance} onChange={component.setFareParameters} type="number" required placeholder="0.00"/>
+          <input name="remaining" ref="balanceInput" type="number" value={component.state.remainingBalance} onChange={component.setFareParameters} type="number" required placeholder="0.00"/>
         </label>
         <label htmlFor="max">
           <h3>Max to spend</h3>

@@ -17,7 +17,7 @@ export default class FareInput extends React.Component {
   setFareParameters () {
     let remainingBalance = component.refs.balanceInput.getDOMNode().value;
     let maxToSpend = component.refs.maxInput.getDOMNode().value;
-    FareActions.updateFareParameters(Number(remainingBalance), Number(maxToSpend));
+    FareActions.updateFareParameters(remainingBalance, maxToSpend);
     component.setState({remainingBalance, maxToSpend});
   }
 

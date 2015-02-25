@@ -32,7 +32,7 @@ var amountToAdd = (fare, balanceLeft) => {
 
 export default {
   amountsToAdd : (balanceLeft, maxToSpend) => {
-    if (isNaN(balanceLeft) || isNaN(maxToSpend)) return [];
+    if (balanceLeft === null || maxToSpend === null) return [];
     let purchases = [];
     let fares = createFareMultiples(maxToSpend);
     for (let i = fares.length - 1; i >= 0; i--) {

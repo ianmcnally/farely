@@ -20,8 +20,8 @@ class Fares extends EventEmitter {
   }
 
   setFareParameters (balance, max) {
-    this.remainingBalance = balance;
-    this.maxToSpend = max;
+    this.remainingBalance = balance ? Number(balance) : null;
+    this.maxToSpend = max ? Number(max) : null;
     this.emitChange();
   }
 

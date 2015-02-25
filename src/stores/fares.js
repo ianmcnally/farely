@@ -6,7 +6,13 @@ const EVENTS = {
   CHANGE : 'change'
 }
 
+let purchaseOptions = [];
+
 class Fares extends EventEmitter {
+
+  constructor () {
+    this.addChangeListener(this._setOptions);
+  }
 
   emitChange () {
     this.emit(EVENTS.CHANGE);
@@ -26,8 +32,13 @@ class Fares extends EventEmitter {
     this.on(EVENTS.CHANGE, callback);
   }
 
-  getPurchaseOptions (remainingBalance, maxToSpend) {
-    return  [
+  get purchaseOptions () {
+    return purchaseOptions;
+  }
+
+  _setOptions () {
+    // TODO: get from service
+    purchaseOptions = [
       {
         amount : new Date().getSeconds(),
         rides : new Date().getUTCMilliseconds()

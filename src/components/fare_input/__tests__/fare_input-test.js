@@ -32,7 +32,7 @@ describe('FareInput', () => {
 
     it('initializes the maxToSpend input value to 40', () => {
       var maxInput = fareInput.refs.maxInput;
-      expect(maxInput.props.defaultValue)
+      expect(maxInput.props.value)
         .toEqual(40);
     });
 

@@ -34,9 +34,9 @@ gulp.task('index.html', function(){
 })
 
 gulp.task('jest', function(){
-  gulp.src('src/**/*-test.js')
+  gulp.src('') // bug in gulp-jest: https://github.com/Dakuan/gulp-jest/pull/5
     .pipe(jest({
-      rootDir : 'src',
+      rootDir : './src',
       scriptPreprocessor : '../node_modules/babel-jest',
       testFileExtensions : ['es6', 'js'],
       moduleFileExtensions : ['js', 'json', 'es6'],

@@ -5,7 +5,6 @@ import {addons} from 'react/addons';
 import FareInput from '../fare_input.jsx';
 let TestUtils = addons.TestUtils;
 
-
 describe('FareInput', () => {
   var fareInput;
 

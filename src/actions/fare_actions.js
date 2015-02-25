@@ -3,19 +3,13 @@ import AppDispatcher from '../dispatchers/app';
 
 var FareActions = {
 
-  updateRemainingBalance : (balance) => {
+  updateFareParameters : (balance, maxToSpend) => {
     AppDispatcher.dispatch({
-      actionType : FARE_UPDATES.REMAINING_BALANCE_UPDATE,
-      balance : balance
-    });
-  },
-
-  updateMaxToSpend : (maxToSpend) => {
-    AppDispatcher.dispatch({
-      actionType : FARE_UPDATES.MAX_TO_SPEND_UPDATE,
+      actionType : FARE_UPDATES.FARE_PARAMETER,
+      balance : balance,
       maxToSpend : maxToSpend
     });
-  }
+  },
 
 }
 

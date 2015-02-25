@@ -1,6 +1,7 @@
 import {EventEmitter} from 'events';
 import AppDispatcher from '../dispatchers/app';
 import FARE_UPDATES from '../constants/fare_updates';
+import fareService from '../services/fare';
 
 const EVENTS = {
   CHANGE : 'change'
@@ -18,12 +19,8 @@ class Fares extends EventEmitter {
     this.emit(EVENTS.CHANGE);
   }
 
-  setRemainingBalance (balance) {
+  setFareParameters (balance, max) {
     this.remainingBalance = balance;
-    this.emitChange();
-  }
-
-  setMaxToSpend (max) {
     this.maxToSpend = max;
     this.emitChange();
   }
@@ -37,13 +34,7 @@ class Fares extends EventEmitter {
   }
 
   _setOptions () {
-    // TODO: get from service
-    purchaseOptions = [
-      {
-        amount : new Date().getSeconds(),
-        rides : new Date().getUTCMilliseconds()
-      }
-    ]
+    purchaseOptions = fareService.amountsToAdd(this.remainingBalance, this.maxToSpend);
   }
 
 }
@@ -54,12 +45,8 @@ AppDispatcher.register( (action) => {
 
   switch (action.actionType) {
 
-    case FARE_UPDATES.REMAINING_BALANCE_UPDATE:
-      fares.setRemainingBalance(action.balance);
-      break;
-
-    case FARE_UPDATES.MAX_TO_SPEND_UPDATE:
-      fares.setMaxToSpend(action.maxToSpend);
+    case FARE_UPDATES.FARE_PARAMETER:
+      fares.setFareParameters(action.balance, action.maxToSpend);
       break;
 
     default:

@@ -1,5 +1,4 @@
 import React from 'react';
-import Fares from '../../stores/fares';
 import FareActions from '../../actions/fare_actions';
 
 let component;

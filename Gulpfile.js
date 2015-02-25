@@ -3,6 +3,7 @@ require('harmonize')();
 var autoprefixer = require('gulp-autoprefixer');
 var babelify = require('babelify');
 var browserify = require('browserify');
+var buffer = require('vinyl-buffer');
 var chalk = require('chalk');
 var connect = require('gulp-connect');
 var gulp = require('gulp');
@@ -11,6 +12,7 @@ var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
+var uglify = require('gulp-uglify');
 
 gulp.task('compile', ['copy:icons', 'copy:normalize', 'index.html', 'copy:manifest', 'javascript', 'style']);
 
@@ -52,6 +54,8 @@ gulp.task('javascript', ['index.html'], function(){
       console.log(chalk.bold.red(err));
     })
     .pipe(source('main.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('./dist/javascript'));
 });
 

@@ -22,7 +22,7 @@
     "gulp-jest": "^0.4.0",
     "gulp-rename": "^1.2.0",
     "harmonize": "^1.4.1",
-    "react": "^0.12.2",
+    "react": "^0.13.0-rc1",
     "react-tools": "^0.12.2",
     "through2": "^0.6.3",
     "vinyl": "^0.4.6",

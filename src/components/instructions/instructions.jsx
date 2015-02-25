@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default React.createClass({
+export default class Instructions extends React.Component {
+
   render(){
     return (
       <p>
@@ -8,4 +9,5 @@ export default React.createClass({
       </p>
     );
   }
-});
+
+}

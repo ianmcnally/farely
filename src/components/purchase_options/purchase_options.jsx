@@ -1,25 +1,26 @@
 import React from 'react';
-import Fares from '../stores/fares';
+import Fares from '../../stores/fares';
 
-export default React.createClass({
+export default class PurchaseOptions extends React.Component {
 
-  getInitialState(){
-    return {
+  constructor (props) {
+    super(props);
+    this.state = {
       purchaseOptions : []
     };
-  },
+  }
 
-  componentWillMount(){
+  componentWillMount () {
     Fares.addChangeListener(this.updateOptions);
-  },
+  }
 
-  updateOptions(){
+  updateOptions () {
     this.setState({
       purchaseOptions : Fares.getPurchaseOptions()
     });
-  },
+  }
 
-  render(){
+  render () {
     var options = this.state.purchaseOptions.map((option, i) =>
       <li key={i}>
         <span className="amount">{option.amount}</span> for {option.rides} rides
@@ -31,4 +32,5 @@ export default React.createClass({
       </ul>
     );
   }
-});
+
+}

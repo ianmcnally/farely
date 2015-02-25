@@ -2,26 +2,27 @@ import React from 'react';
 import Fares from '../../stores/fares';
 import FareActions from '../../actions/fare_actions';
 
-export default React.createClass({
+export default class FareInput extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props);
+    this.state = {
       remainingBalance : null,
       maxToSpend : null
     }
-  },
+  }
 
   setMaxToSpend (event) {
     var maxToSpend = event.target.valueAsNumber;
     FareActions.updateMaxToSpend(maxToSpend);
     this.setState({maxToSpend});
-  },
+  }
 
   setRemainingBalance (event) {
     var remainingBalance = event.target.valueAsNumber;
     FareActions.updateRemainingBalance(remainingBalance);
     this.setState({remainingBalance});
-  },
+  }
 
   render () {
     return (
@@ -37,4 +38,5 @@ export default React.createClass({
       </form>
     );
   }
-});
+
+}

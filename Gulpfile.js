@@ -7,11 +7,15 @@ var babelify = require('babelify');
 var rename = require('gulp-rename');
 var source = require('vinyl-source-stream');
 var jest = require('gulp-jest');
+var chalk = require('chalk');
 
 gulp.task('compile', ['index.html'], function(){
   browserify('./src/app.jsx')
     .transform(babelify)
     .bundle()
+    .on('error', function(err){
+      console.log(chalk.bold.red(err));
+    })
     .pipe(source('main.js'))
     .pipe(gulp.dest('./dist/javascript'));
 });

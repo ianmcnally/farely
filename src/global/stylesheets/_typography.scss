@@ -11,10 +11,16 @@ body {
   font-size: 1.6rem;
 }
 
-small, p {
+p {
   font-size: 1rem;
   line-height: 1.5;
   margin: 0 0 1.5rem 0;
+}
+
+small {
+  font-size: .8rem;
+  line-height: 1.6;
+  margin: 0 0 1.6rem 0;
 }
 
 h1 {
@@ -64,4 +70,8 @@ i {
 @mixin smoothing() {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a, a:visited, a:hover {
+  color: inherit;
 }

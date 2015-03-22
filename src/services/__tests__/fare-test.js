@@ -8,13 +8,14 @@ describe('fareService', () => {
   describe('amountsToAdd', () => {
 
     it('takes a $0 balance', () => {
+      let expectedRideCount = 4;
       let amounts = fareService.amountsToAdd(0, 40);
 
-      expect(amounts.length).toBe(5);
-      expect(amounts[0].rides).toEqual(16);
-      expect(amounts[0].amount).toEqual('38.10');
-      expect(amounts[4].rides).toEqual(1);
-      expect(amounts[4].amount).toEqual('2.50');
+      expect(amounts.length).toBe(expectedRideCount);
+      expect(amounts[0].rides).toEqual(11);
+      expect(amounts[0].amount).toEqual('27.25');
+      expect(amounts[expectedRideCount - 1].rides).toEqual(1);
+      expect(amounts[expectedRideCount - 1].amount).toEqual('2.75');
     });
 
     it('calculates the bonus for amounts > the bonus minimum', () => {

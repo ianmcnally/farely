@@ -24,14 +24,16 @@ export default class FareInput extends React.Component {
   render () {
     return (
       <form name="farepurchase">
-        <label htmlFor="remaining">
+        <section>
           <h3>Remaining balance</h3>
+          <label htmlFor="remaining">$</label>
           <input name="remaining" ref="balanceInput" type="number" value={component.state.remainingBalance} onChange={component.setFareParameters} required placeholder="0.00" autofocus/>
-        </label>
-        <label htmlFor="max">
+        </section>
+        <section>
           <h3>Max to spend</h3>
+          <label htmlFor="max">$</label>
           <input name="max" ref="maxInput" type="number" value={component.state.maxToSpend} onChange={component.setFareParameters} required placeholder="40.00"/>
-        </label>
+        </section>
       </form>
     );
   }

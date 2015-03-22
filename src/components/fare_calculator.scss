@@ -9,17 +9,17 @@
     line-height: 2.2;
   }
 
+  section {
+    position: relative;
+  }
+
   label {
     margin-bottom: 1rem;
-    position: relative;
-
-    &:after {
-      position: absolute;
-      left: .4rem;
-      top: -1.7rem;
-      display: block;
-      font-size: 3.3rem;
-    }
+    position: absolute;
+    left: .4rem;
+    top: 2.65rem;
+    display: block;
+    font-size: 3.3rem;
   }
 
   input {
@@ -45,8 +45,12 @@
     margin-bottom: .6rem;
   }
 
-  .amount:before, label:after {
+  .amount:before {
     content: "$";
+    color: $teal;
+  }
+
+  label {
     color: $teal;
   }
 

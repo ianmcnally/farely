@@ -1,0 +1,7 @@
+footer {
+  small:first-of-type:after {
+    content: "|";
+    margin: 0 .6rem;
+    display: inline-block;
+  }
+}

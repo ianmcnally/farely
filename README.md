@@ -3,7 +3,7 @@
 A port to React of [Farely](http://github.com/imcnally/farely)
 
 ## Setup
-Note: Having `node` (0.10) installed is a prerequisite.
+Note: Having `node` (v0.10) installed is a prerequisite.
   - Use [https://github.com/creationix/nvm](nvm) until [a bug in jest](https://github.com/facebook/jest/issues/243) is resolved.
 
 1. `npm install -g gulp`.

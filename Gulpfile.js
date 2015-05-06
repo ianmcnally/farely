@@ -5,6 +5,7 @@ var babelify = require('babelify');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var chalk = require('chalk');
+var confirm = require('gulp-confirm');
 var connect = require('gulp-connect');
 var fs = require('fs');
 var gulp = require('gulp');
@@ -94,7 +95,7 @@ gulp.task('watch', function(){
 gulp.task('compress:js', function(){
   gulp.src('dist/**/*.js')
     .pipe(uglify())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('compress:css', function(){
@@ -109,6 +110,10 @@ gulp.task('deploy', ['compress:js', 'compress:css'], function(){
     return console.log(chalk.bold.red(configPath + ' not found.'));
   }
   gulp.src('./dist/**')
+    .pipe(confirm({
+      question: 'You\'re sure you want to release? (y/n)',
+      input: '_key:y' // Proceed only if 'y' is entered
+    }))
     .pipe(gzip())
     .pipe(s3(JSON.parse(fs.readFileSync(configPath)), {
       uploadPath: '/',

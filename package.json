@@ -1,6 +1,6 @@
 {
   "name": "farely-react",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "description": "A rebuild of farely.io in React",
   "repository": "https://www.github.com/imcnally/farely-react",
   "main": "Gulpfile.js",
@@ -22,6 +22,7 @@
     "chalk": "^1.0.0",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.1.0",
+    "gulp-confirm": "^1.0.1",
     "gulp-connect": "^2.2.0",
     "gulp-gzip": "^1.1.0",
     "gulp-jest": "^0.4.0",

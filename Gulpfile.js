@@ -6,12 +6,15 @@ var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var chalk = require('chalk');
 var connect = require('gulp-connect');
+var fs = require('fs');
 var gulp = require('gulp');
+var gzip = require('gulp-gzip');
 var jest = require('gulp-jest');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
+var s3 = require('gulp-s3');
 var uglify = require('gulp-uglify');
 
 gulp.task('compile', ['copy:icons', 'copy:normalize', 'index.html', 'copy:manifest', 'javascript', 'style']);
@@ -87,6 +90,22 @@ gulp.task('watch', function(){
   gulp.watch(['src/**/*.html*'], ['index.html', 'copy:manifest']);
   gulp.watch(['src/**/*.scss'], ['style', 'copy:manifest']);
 });
+
+gulp.task('deploy', function(){
+  var configPath = 'farely-aws.json'
+  if (!fs.existsSync(configPath)) {
+    return console.log(chalk.bold.red(configPath + ' not found.'));
+  }
+  gulp.src('./dist/**')
+    .pipe(gzip())
+    .pipe(s3(JSON.parse(fs.readFileSync(configPath)), {
+      uploadPath: '/',
+      headers : {
+        'x-amz-acl': 'public-read'
+      }
+    }));
+});
+
 
 gulp.task('default', ['compile', 'connect', 'watch']);
 

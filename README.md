@@ -8,6 +8,7 @@ Note: Having `node` (v0.10) installed is a prerequisite.
 
 1. `npm install -g gulp`.
 2. `npm install`.
+3. Download the AWS config (farely-aws.json) from Github Gist.
 
 ## Dev
 
@@ -16,3 +17,7 @@ Note: Having `node` (v0.10) installed is a prerequisite.
 ## Test
 
 2. `gulp test` - Run test suite
+
+## Deploy
+
+1. `grunt compile deploy` - Compiles all assets into /dist; deploys to S3 (make sure farely-aws.json is downloaded to project root).

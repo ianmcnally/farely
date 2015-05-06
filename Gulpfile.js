@@ -10,6 +10,7 @@ var fs = require('fs');
 var gulp = require('gulp');
 var gzip = require('gulp-gzip');
 var jest = require('gulp-jest');
+var minifyCSS = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var sass = require('gulp-sass');
@@ -58,7 +59,6 @@ gulp.task('javascript', ['index.html'], function(){
     })
     .pipe(source('main.js'))
     .pipe(buffer())
-    .pipe(uglify())
     .pipe(gulp.dest('./dist/javascript'));
 });
 
@@ -91,8 +91,20 @@ gulp.task('watch', function(){
   gulp.watch(['src/**/*.scss'], ['style', 'copy:manifest']);
 });
 
-gulp.task('deploy', function(){
-  var configPath = 'farely-aws.json'
+gulp.task('compress:js', function(){
+  gulp.src('dist/**/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('compress:css', function(){
+  gulp.src('dist/**/*.css')
+    .pipe(minifyCSS())
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('deploy', ['compress:js', 'compress:css'], function(){
+  var configPath = 'farely-aws.json';
   if (!fs.existsSync(configPath)) {
     return console.log(chalk.bold.red(configPath + ' not found.'));
   }

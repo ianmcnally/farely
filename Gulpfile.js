@@ -43,8 +43,8 @@ gulp.task('copy:normalize', function(){
 gulp.task('index.html', function(){
   gulp.src('src/layout.html')
     .pipe(rename('index.html'))
-    .pipe(gulp.dest('dist'))
-})
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('javascript', ['index.html'], function(){
   browserify('./src/app.jsx')

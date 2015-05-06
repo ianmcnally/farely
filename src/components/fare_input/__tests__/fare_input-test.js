@@ -6,7 +6,8 @@ import FareInput from '../fare_input.jsx';
 let TestUtils = addons.TestUtils;
 
 describe('FareInput', () => {
-  var fareInput;
+
+  let fareInput;
 
   beforeEach(() => {
     fareInput = TestUtils.renderIntoDocument(<FareInput />);
@@ -14,7 +15,7 @@ describe('FareInput', () => {
 
   describe('remainingBalance', () => {
 
-    var balanceInput;
+    let balanceInput;
 
     beforeEach(() => {
       balanceInput = fareInput.refs.balanceInput;

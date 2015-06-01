@@ -1,5 +1,6 @@
 import React from 'react';
 import FareActions from '../../actions/fare_actions';
+import CurrencyMaskedInput from 'react-currency-masked-input';
 
 let component;
 
@@ -27,12 +28,12 @@ export default class FareInput extends React.Component {
         <section>
           <h3>Remaining balance</h3>
           <label htmlFor="remaining">$</label>
-          <input name="remaining" ref="balanceInput" type="number" value={component.state.remainingBalance} onChange={component.setFareParameters} required placeholder="0.00" autofocus/>
+          <CurrencyMaskedInput name="remaining" pattern="\d*" ref="balanceInput" type="number" onChange={component.setFareParameters} required placeholder="0.00" autofocus/>
         </section>
         <section>
           <h3>Max to spend</h3>
           <label htmlFor="max">$</label>
-          <input name="max" ref="maxInput" type="number" value={component.state.maxToSpend} onChange={component.setFareParameters} required placeholder="40.00"/>
+          <CurrencyMaskedInput name="max" pattern="\d*" ref="maxInput" type="number" value={component.state.maxToSpend} onChange={component.setFareParameters} required placeholder="0.00"/>
         </section>
       </form>
     );

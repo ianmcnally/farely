@@ -12,6 +12,7 @@ let purchaseOptions = [];
 class Fares extends EventEmitter {
 
   constructor () {
+    super();
     this.addChangeListener(this._setOptions);
   }
 

@@ -5,13 +5,16 @@ import Instructions from './components/instructions/instructions.jsx';
 import PurchaseOptions from './components/purchase_options/purchase_options.jsx';
 import Footer from './components/footer/footer.jsx';
 
-class App extends React.Component {
+let window = window || global || {};
+let document = window.document;
+
+export default class App extends React.Component {
 
   constructor (props) {
     super(props);
   }
 
-  componentWillMount () {
+  componentDidMount () {
     AppCacheManager.watchForUpdates();
   }
 
@@ -28,4 +31,4 @@ class App extends React.Component {
 
 }
 
-React.render(<App />, document.body)
+if (document) { React.render(<App />, document.body); }

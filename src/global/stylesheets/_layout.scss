@@ -11,3 +11,14 @@ footer {
   border-top: .1rem solid $grey;
   text-align: center;
 }
+// celebrating gay marriage in the US
+body:before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  background-image: linear-gradient(to right, red 5%, orange, yellow, green, blue, purple 95%);
+}

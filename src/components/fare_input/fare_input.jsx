@@ -28,12 +28,12 @@ export default class FareInput extends React.Component {
         <section>
           <h3>Remaining balance</h3>
           <label htmlFor="remaining">$</label>
-          <CurrencyMaskedInput name="remaining" pattern="\d*" ref="balanceInput" type="number" onChange={component.setFareParameters} required placeholder="0.00" autofocus/>
+          <CurrencyMaskedInput name="remaining" ref="balanceInput" onChange={component.setFareParameters} required placeholder="0.00" autofocus/>
         </section>
         <section>
           <h3>Max to spend</h3>
           <label htmlFor="max">$</label>
-          <CurrencyMaskedInput name="max" pattern="\d*" ref="maxInput" type="number" value={component.state.maxToSpend} onChange={component.setFareParameters} required placeholder="0.00"/>
+          <CurrencyMaskedInput name="max" ref="maxInput" value={component.state.maxToSpend} onChange={component.setFareParameters} required placeholder="0.00"/>
         </section>
       </form>
     );

@@ -14,12 +14,14 @@ export default class PurchaseOptions extends React.Component {
   }
 
   componentWillMount () {
-    Fares.addChangeListener(component.updateOptions);
+    Fares.subscribe(component.updateOptions);
   }
 
   updateOptions () {
+    const { purchaseOptions } = Fares.getState();
+
     component.setState({
-      purchaseOptions : Fares.purchaseOptions
+      purchaseOptions : purchaseOptions
     });
   }
 

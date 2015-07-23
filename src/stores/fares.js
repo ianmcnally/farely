@@ -1,59 +1,22 @@
-import {EventEmitter} from 'events';
-import AppDispatcher from '../dispatchers/app';
-import FARE_UPDATES from '../constants/fare_updates';
+import { createStore } from 'redux';
+import { FARE_PARAMETER } from '../constants/fare_updates';
 import fareService from '../services/fare';
 
-const EVENTS = {
-  CHANGE : 'change'
-}
+export default createStore((state = {}, action) => {
 
-let purchaseOptions = [];
+  if (action.type === FARE_PARAMETER) {
+    let {remainingBalance, maxToSpend} = action;
 
-class Fares extends EventEmitter {
+    remainingBalance = remainingBalance ? Number(remainingBalance) : null;
+    maxToSpend = maxToSpend ? Number(maxToSpend) : null;
 
-  constructor () {
-    super();
-    this.addChangeListener(this._setOptions);
+    state = {
+      maxToSpend,
+      remainingBalance,
+      purchaseOptions: fareService.amountsToAdd(remainingBalance, maxToSpend)
+    }
   }
 
-  emitChange () {
-    this.emit(EVENTS.CHANGE);
-  }
-
-  setFareParameters (balance, max) {
-    this.remainingBalance = balance ? Number(balance) : null;
-    this.maxToSpend = max ? Number(max) : null;
-    this.emitChange();
-  }
-
-  addChangeListener (callback) {
-    this.on(EVENTS.CHANGE, callback);
-  }
-
-  get purchaseOptions () {
-    return purchaseOptions;
-  }
-
-  _setOptions () {
-    purchaseOptions = fareService.amountsToAdd(this.remainingBalance, this.maxToSpend);
-  }
-
-}
-
-var fares = new Fares();
-
-AppDispatcher.register( (action) => {
-
-  switch (action.actionType) {
-
-    case FARE_UPDATES.FARE_PARAMETER:
-      fares.setFareParameters(action.balance, action.maxToSpend);
-      break;
-
-    default:
-
-  }
+  return state;
 
 });
-
-export default fares;

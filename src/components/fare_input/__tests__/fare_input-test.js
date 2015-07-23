@@ -1,16 +1,20 @@
 jest.dontMock('../fare_input.jsx');
 
-import React from 'react';
-import {addons} from 'react/addons';
+import React from 'react/addons';
 import FareInput from '../fare_input.jsx';
 import FareActions from '../../../actions/fare_actions';
+
+const {
+  renderIntoDocument,
+  Simulate
+} = React.addons.TestUtils;
 
 describe('FareInput', () => {
 
   let fareInput;
 
   beforeEach(() => {
-    fareInput = addons.TestUtils.renderIntoDocument(<FareInput />);
+    fareInput = renderIntoDocument(<FareInput />);
   });
 
   describe('initialization', () => {
@@ -21,8 +25,8 @@ describe('FareInput', () => {
     });
 
     it('sets the maxToSpend input value to 40', () => {
-      var maxInput = fareInput.refs.maxInput;
-      expect(maxInput.props.value)
+      let { props } = fareInput.refs.maxInput;
+      expect(props.value)
         .toEqual(40);
     });
 
@@ -37,24 +41,24 @@ describe('FareInput', () => {
       spyOn(FareActions, 'updateFareParameters');
     });
 
-    xit('triggers an update fare parameters action', () => {
+    it('triggers an update fare parameters action', () => {
       let updatedValue = '3'
+      let updatedValueMasked = '0.03'
 
       let input = React.findDOMNode(balanceInput);
-      input.value = updatedValue;
-      addons.TestUtils.Simulate.change(input);
+      Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(FareActions.updateFareParameters).toHaveBeenCalledWith(updatedValue, '40');
+      expect(FareActions.updateFareParameters).toHaveBeenCalledWith(updatedValueMasked, '40');
     });
 
-    xit('updates the state fare parameters', () => {
-      let updatedValue = '10'
+    it('updates the state fare parameters', () => {
+      let updatedValue = '10';
+      let updatedValueMasked = '0.10';
 
       let input = React.findDOMNode(balanceInput);
-      input.value = updatedValue;
-      addons.TestUtils.Simulate.change(input);
+      Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(fareInput.state.remainingBalance).toEqual(updatedValue);
+      expect(fareInput.state.remainingBalance).toEqual(updatedValueMasked);
     });
 
   });
@@ -68,24 +72,24 @@ describe('FareInput', () => {
       spyOn(FareActions, 'updateFareParameters');
     });
 
-    xit('triggers an update fare parameters action', () => {
+    it('triggers an update fare parameters action', () => {
       let updatedValue = '80';
+      let updatedValueMasked = '0.80';
 
       let input = React.findDOMNode(maxInput);
-      input.value = updatedValue;
-      addons.TestUtils.Simulate.change(input);
+      Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(FareActions.updateFareParameters).toHaveBeenCalledWith(null, updatedValue);
+      expect(FareActions.updateFareParameters).toHaveBeenCalledWith(null, updatedValueMasked);
     });
 
-    xit('updates the state fare parameters', () => {
-      let updatedValue = '80'
+    it('updates the state fare parameters', () => {
+      let updatedValue = '80';
+      let updatedValueMasked = '0.80';
 
       let input = React.findDOMNode(maxInput);
-      input.value = updatedValue;
-      addons.TestUtils.Simulate.change(input);
+      Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(fareInput.state.maxToSpend).toEqual(updatedValue);
+      expect(fareInput.state.maxToSpend).toEqual(updatedValueMasked);
     });
 
   });

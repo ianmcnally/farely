@@ -5,15 +5,16 @@
   "repository": "https://www.github.com/imcnally/farely-react",
   "main": "Gulpfile.js",
   "scripts": {
+    "start": "gulp",
     "test": "gulp test"
   },
   "author": "Ian McNally <ianmcnally@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "flux": "^2.0.1",
     "normalize.css": "^3.0.2",
     "react": "^0.13.2",
-    "react-currency-masked-input": "0.0.10"
+    "react-currency-masked-input": "0.0.10",
+    "redux": "^1.0.0-rc"
   },
   "devDependencies": {
     "babel": "^5.5.8",

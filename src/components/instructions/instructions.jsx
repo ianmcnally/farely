@@ -14,12 +14,14 @@ export default class Instructions extends React.Component {
   }
 
   componentWillMount () {
-    Fares.addChangeListener(component.updateInstructions);
+    Fares.subscribe(component.updateInstructions);
   }
 
   updateInstructions () {
+    const { purchaseOptions } = Fares.getState();
+
     component.setState({
-      showInstructions : !Fares.purchaseOptions.length
+      showInstructions : !purchaseOptions.length
     });
   }
 

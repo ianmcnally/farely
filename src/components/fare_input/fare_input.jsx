@@ -2,24 +2,24 @@ import React from 'react';
 import FareActions from '../../actions/fare_actions';
 import CurrencyMaskedInput from 'react-currency-masked-input';
 
-let component;
-
 export default class FareInput extends React.Component {
 
   constructor (props) {
     super(props);
-    component = this;
-    component.state = {
+
+    this.state = {
       remainingBalance : null,
       maxToSpend : 40
     }
   }
 
   setFareParameters () {
-    let remainingBalance = React.findDOMNode(component.refs.balanceInput).value;
-    let maxToSpend = React.findDOMNode(component.refs.maxInput).value;
+    let remainingBalance = React.findDOMNode(this.refs.balanceInput).value;
+    let maxToSpend = React.findDOMNode(this.refs.maxInput).value;
+
     FareActions.updateFareParameters(remainingBalance, maxToSpend);
-    component.setState({remainingBalance, maxToSpend});
+
+    this.setState({remainingBalance, maxToSpend});
   }
 
   render () {
@@ -28,12 +28,12 @@ export default class FareInput extends React.Component {
         <section>
           <h3>Remaining balance</h3>
           <label htmlFor="remaining">$</label>
-          <CurrencyMaskedInput name="remaining" ref="balanceInput" onChange={component.setFareParameters} required placeholder="0.00" autofocus/>
+          <CurrencyMaskedInput name="remaining" ref="balanceInput" onChange={this.setFareParameters.bind(this)} required placeholder="0.00" autofocus/>
         </section>
         <section>
           <h3>Max to spend</h3>
           <label htmlFor="max">$</label>
-          <CurrencyMaskedInput name="max" ref="maxInput" value={component.state.maxToSpend} onChange={component.setFareParameters} required placeholder="0.00"/>
+          <CurrencyMaskedInput name="max" ref="maxInput" value={this.state.maxToSpend} onChange={this.setFareParameters.bind(this)} required placeholder="0.00"/>
         </section>
       </form>
     );

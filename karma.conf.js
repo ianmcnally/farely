@@ -17,13 +17,16 @@ module.exports = function(config) {
   files: [
     'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.min.js',
     'node_modules/react/dist/react-with-addons.min.js',
+    'src/__tests__/helpers/*.js',
     'src/**/*.js',
     'src/**/*.jsx'
   ],
 
 
   // list of files to exclude
-  exclude: [],
+  exclude: [
+    'src/app.jsx'
+  ],
 
 
   // preprocess matching files before serving them to the browser

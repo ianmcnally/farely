@@ -11,11 +11,11 @@ Note: Having `node` (v0.10) installed is a prerequisite.
 
 ## Dev
 
-1. `./node_modules/.bin/gulp` - Compile, start server, watch for file changes
+1. `npm start` - Compile, start server, watch for file changes
 
 ## Test
 
-2. `./node_modules/.bin/gulp test` - Run test suite
+2. `npm run test` - Run test suite
 
 ## Deploy
 

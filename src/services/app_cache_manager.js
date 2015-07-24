@@ -1,4 +1,4 @@
-var confirmIfUpdateReady = () => {
+const confirmIfUpdateReady = () => {
   if (window.applicationCache.status === window.applicationCache.UPDATEREADY) {
     if (confirm('A new version of Farely is available. Launch it?')) {
       window.location.reload();
@@ -6,9 +6,9 @@ var confirmIfUpdateReady = () => {
   }
 };
 
-export default {
-  watchForUpdates : () => {
-    if (!window.applicationCache) { return; }
-    window.applicationCache.addEventListener('updateready', confirmIfUpdateReady);
-  }
+const watchForUpdates = () => {
+  if (!window.applicationCache) { return; }
+  window.applicationCache.addEventListener('updateready', confirmIfUpdateReady);
 }
+
+export default {watchForUpdates}

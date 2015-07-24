@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Fares from '../../stores/fares';
 
-export default class Instructions extends React.Component {
+export default class Instructions extends Component {
 
   constructor (props) {
     super(props);

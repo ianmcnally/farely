@@ -12,7 +12,7 @@ import connect from 'gulp-connect';
 import fs from 'fs';
 import gulp from 'gulp';
 import gzip from 'gulp-gzip';
-import jest from 'gulp-jest';
+import { Server } from 'karma';
 import minifyCSS from 'gulp-minify-css';
 import React from 'react';
 import rename from 'gulp-rename';
@@ -22,6 +22,7 @@ import source from 'vinyl-source-stream';
 import s3 from 'gulp-s3';
 import uglify from 'gulp-uglify';
 
+const karmaConfig = __dirname + '/karma.conf.js';
 
 gulp.task('compile', ['copy:icons', 'copy:normalize', 'index.html', 'copy:manifest', 'javascript', 'style']);
 
@@ -69,15 +70,11 @@ gulp.task('javascript', ['index.html'], () => {
     .pipe(gulp.dest('./dist/javascript'));
 });
 
-gulp.task('jest', () => {
-  gulp.src('') // bug in gulp-jest: https://github.com/Dakuan/gulp-jest/pull/5
-    .pipe(jest({
-      rootDir : './src',
-      scriptPreprocessor : '../node_modules/babel-jest',
-      testFileExtensions : ['es6', 'js'],
-      moduleFileExtensions : ['js', 'json', 'es6'],
-      unmockedModulePathPatterns : ['./node_modules/react']
-    }));
+gulp.task('karma:single', (done) => {
+  new Server({
+    configFile: karmaConfig,
+    singleRun: true
+  }, done).start();
 });
 
 gulp.task('style', () => {
@@ -93,7 +90,7 @@ gulp.task('style', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch(['src/**/*.js*'], ['compile']);
+  gulp.watch(['src/**/*.js*'], ['compile', 'test']);
   gulp.watch(['src/**/*.html*'], ['index.html', 'copy:manifest']);
   gulp.watch(['src/**/*.scss'], ['style', 'copy:manifest']);
 });
@@ -131,4 +128,4 @@ gulp.task('deploy', ['compress:js', 'compress:css'], () => {
 
 gulp.task('default', ['compile', 'connect', 'watch']);
 
-gulp.task('test', ['jest']);
+gulp.task('test', ['karma:single']);

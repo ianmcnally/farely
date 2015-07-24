@@ -1,5 +1,3 @@
-jest.dontMock('../fare_input.jsx');
-
 import React from 'react/addons';
 import FareInput from '../fare_input.jsx';
 import FareActions from '../../../actions/fare_actions';
@@ -20,13 +18,16 @@ describe('FareInput', () => {
   describe('initialization', () => {
 
     it('sets the remainingBalance input value to null', () => {
-      expect(fareInput.refs.balanceInput.value)
+      const { balanceInput } = fareInput.refs;
+
+      expect(balanceInput.props.value)
         .toEqual(null);
     });
 
     it('sets the maxToSpend input value to 40', () => {
-      let { props } = fareInput.refs.maxInput;
-      expect(props.value)
+      const { maxInput } = fareInput.refs;
+
+      expect(maxInput.props.value)
         .toEqual(40);
     });
 
@@ -79,7 +80,7 @@ describe('FareInput', () => {
       let input = React.findDOMNode(maxInput);
       Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(FareActions.updateFareParameters).toHaveBeenCalledWith(null, updatedValueMasked);
+      expect(FareActions.updateFareParameters).toHaveBeenCalledWith('', updatedValueMasked);
     });
 
     it('updates the state fare parameters', () => {

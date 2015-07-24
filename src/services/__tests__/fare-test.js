@@ -1,5 +1,3 @@
-jest.dontMock('../fare');
-
 import fareService from '../fare';
 import RATES from '../../constants/rates';
 

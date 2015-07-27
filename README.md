@@ -3,11 +3,8 @@
 A port to React of [Farely](http://github.com/imcnally/farely)
 
 ## Setup
-Note: Having `node` (v0.10) installed is a prerequisite.
-  - Use [https://github.com/creationix/nvm](nvm) until [a bug in jest](https://github.com/facebook/jest/issues/243) is resolved.
-
-2. `npm install`.
-3. Download the AWS config (farely-aws.json) from Github Gist.
+1. `npm install`.
+2. Download the AWS config (farely-aws.json) from Github Gist.
 
 ## Dev
 

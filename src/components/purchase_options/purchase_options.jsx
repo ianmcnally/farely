@@ -18,9 +18,7 @@ export default class PurchaseOptions extends React.Component {
   updateOptions () {
     const { purchaseOptions } = Fares.getState();
 
-    this.setState({
-      purchaseOptions : purchaseOptions
-    });
+    this.setState({ purchaseOptions });
   }
 
   render () {

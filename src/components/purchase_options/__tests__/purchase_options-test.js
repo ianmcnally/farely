@@ -8,6 +8,10 @@ const {
   scryRenderedDOMComponentsWithClass
 } = React.addons.TestUtils;
 
+const {
+  stub
+} = sinon;
+
 describe('PurchaseOptions', () => {
 
   let component;
@@ -25,16 +29,20 @@ describe('PurchaseOptions', () => {
     component = renderIntoDocument(<PurchaseOptions />);
 
     // mock state, so test doesn't rely on certain purchase options and prices
-    spyOn(Fares, 'getState').and.returnValue({purchaseOptions});
-  });
+    stub(Fares, 'getState').returns({purchaseOptions});
+  })
+
+  afterEach(() => {
+    Fares.getState.restore();
+  })
 
   it('renders an item for each purchase options', () => {
     FareActions.updateFareParameters('123', '456');
 
     let items = scryRenderedDOMComponentsWithClass(component, 'purchase-amount');
 
-    expect(items).toBeTruthy();
-    expect(items.length).toEqual(purchaseOptions.length);
+    expect(items).to.be.ok;
+    expect(items.length).to.equal(purchaseOptions.length);
   });
 
   it('displays the price and amount of rides for an option', () => {
@@ -43,7 +51,7 @@ describe('PurchaseOptions', () => {
     let items = scryRenderedDOMComponentsWithClass(component, 'purchase-amount');
     let text = items[0].props.children.map((child) => (child.props && child.props.children) || child).join('');
 
-    expect(text).toEqual(`${purchaseOptions[0].amount} for ${purchaseOptions[0].rides} rides`);
+    expect(text).to.equal(`${purchaseOptions[0].amount} for ${purchaseOptions[0].rides} rides`);
   });
 
 

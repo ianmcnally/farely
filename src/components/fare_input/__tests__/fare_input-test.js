@@ -7,6 +7,10 @@ const {
   Simulate
 } = React.addons.TestUtils;
 
+const {
+  spy
+} = sinon;
+
 describe('FareInput', () => {
 
   let fareInput;
@@ -21,14 +25,14 @@ describe('FareInput', () => {
       const { balanceInput } = fareInput.refs;
 
       expect(balanceInput.props.value)
-        .toEqual(null);
+        .to.be.null;
     });
 
     it('sets the maxToSpend input value to 40', () => {
       const { maxInput } = fareInput.refs;
 
       expect(maxInput.props.value)
-        .toEqual(40);
+        .to.equal(40);
     });
 
   });
@@ -39,8 +43,12 @@ describe('FareInput', () => {
 
     beforeEach(() => {
       balanceInput = fareInput.refs.balanceInput;
-      spyOn(FareActions, 'updateFareParameters');
+      spy(FareActions, 'updateFareParameters');
     });
+
+    afterEach(() => {
+      FareActions.updateFareParameters.restore();
+    })
 
     it('triggers an update fare parameters action', () => {
       let updatedValue = '3'
@@ -49,7 +57,7 @@ describe('FareInput', () => {
       let input = React.findDOMNode(balanceInput);
       Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(FareActions.updateFareParameters).toHaveBeenCalledWith(updatedValueMasked, '40');
+      expect(FareActions.updateFareParameters).to.have.been.calledWith(updatedValueMasked, '40');
     });
 
     it('updates the state fare parameters', () => {
@@ -59,7 +67,7 @@ describe('FareInput', () => {
       let input = React.findDOMNode(balanceInput);
       Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(fareInput.state.remainingBalance).toEqual(updatedValueMasked);
+      expect(fareInput.state.remainingBalance).to.equal(updatedValueMasked);
     });
 
   });
@@ -70,8 +78,12 @@ describe('FareInput', () => {
 
     beforeEach(() => {
       maxInput = fareInput.refs.maxInput;
-      spyOn(FareActions, 'updateFareParameters');
+      spy(FareActions, 'updateFareParameters');
     });
+
+    afterEach(() => {
+      FareActions.updateFareParameters.restore();
+    })
 
     it('triggers an update fare parameters action', () => {
       let updatedValue = '80';
@@ -80,7 +92,7 @@ describe('FareInput', () => {
       let input = React.findDOMNode(maxInput);
       Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(FareActions.updateFareParameters).toHaveBeenCalledWith('', updatedValueMasked);
+      expect(FareActions.updateFareParameters).to.have.been.calledWith('', updatedValueMasked);
     });
 
     it('updates the state fare parameters', () => {
@@ -90,7 +102,7 @@ describe('FareInput', () => {
       let input = React.findDOMNode(maxInput);
       Simulate.change(input, {target: {value: updatedValue}});
 
-      expect(fareInput.state.maxToSpend).toEqual(updatedValueMasked);
+      expect(fareInput.state.maxToSpend).to.equal(updatedValueMasked);
     });
 
   });

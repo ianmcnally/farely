@@ -1,5 +1,7 @@
 import AppCacheManager from '../../services/app_cache_manager';
 
-beforeEach(() => {
-  spyOn(AppCacheManager, 'watchForUpdates');
-});
+const {
+  stub
+} = sinon;
+
+before(() => stub(AppCacheManager, 'watchForUpdates'));

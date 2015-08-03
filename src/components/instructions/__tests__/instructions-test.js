@@ -15,24 +15,24 @@ describe('Instructions', () => {
   })
 
   it('defaults to showing instructions', () => {
-    expect(component.state.showInstructions).toBe(true);
+    expect(component.state.showInstructions).to.be.true;
   });
 
   it('shows the instructions when there are no purchase options', () => {
     FareActions.updateFareParameters(null, null);
 
-    expect(component.state.showInstructions).toBe(true);
+    expect(component.state.showInstructions).to.be.true;
     let hiddenAttribute = React.findDOMNode(component).attributes.getNamedItem('hidden');
-    expect(hiddenAttribute).toBeFalsy();
+    expect(hiddenAttribute).not.to.be.ok;
   });
 
   it('hides instructions when there are purchase options', () => {
     FareActions.updateFareParameters('2', '40');
 
-    expect(component.state.showInstructions).toBe(false);
+    expect(component.state.showInstructions).to.be.false;
     let hiddenAttribute = React.findDOMNode(component).attributes.getNamedItem('hidden');
-    expect(hiddenAttribute).toBeTruthy();
-    expect(hiddenAttribute.value).toEqual('true');
+    expect(hiddenAttribute).to.be.ok;
+    expect(hiddenAttribute.value).to.equal('true');
   });
 
 });

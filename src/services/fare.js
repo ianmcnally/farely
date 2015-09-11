@@ -26,8 +26,13 @@ var isValidAmount = (amountToAdd) => {
 
 var amountToAdd = (fare, balanceLeft) => {
   let amount = fare - balanceLeft;
-  let bonus = ((amount < RATES.BONUS_MIN) ? 0 : RATES.BONUS_PERCENT / 100) + 1.0;
-  return (amount / bonus).toFixed(2);
+  let bonus = RATES.BONUS_PERCENT * .01 + 1;
+  let amountWithBonus = amount / bonus;
+
+  // doesn't return amount-bonus (how much to pay) if amount-bonus is < min bonus amount
+  let toAdd = (amountWithBonus < RATES.BONUS_MIN) ? amount : amountWithBonus;
+
+  return toAdd.toFixed(2);
 }
 
 export default {

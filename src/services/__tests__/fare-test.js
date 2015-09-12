@@ -23,6 +23,16 @@ describe('fareService', () => {
         .to.be.true;
     });
 
+    it('returns amounts without bonus when an amount would not receive a bonus', () => {
+      let maxPurchaseAmountWithoutBonus = RATES.BONUS_MIN * RATES.BONUS_PERCENT / 10.0;
+      let amounts = fareService.amountsToAdd(0, maxPurchaseAmountWithoutBonus);
+
+      amounts.forEach(({ amount, rides })=> {
+        amount = Number(amount);
+        expect(amount).to.equal(RATES.RIDE_COST * rides);
+      });
+    });
+
     it('takes a maximum-to-add value', () => {
       let maxToSpend = 20;
 

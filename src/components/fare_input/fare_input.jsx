@@ -1,11 +1,12 @@
-import React from 'react';
-import FareActions from '../../actions/fare_actions';
-import CurrencyMaskedInput from 'react-currency-masked-input';
+import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
+import FareActions from '../../actions/fare_actions'
+import CurrencyMaskedInput from 'react-currency-masked-input'
 
-export default class FareInput extends React.Component {
+export default class FareInput extends Component {
 
   constructor (props) {
-    super(props);
+    super(props)
 
     this.state = {
       remainingBalance : null,
@@ -14,12 +15,12 @@ export default class FareInput extends React.Component {
   }
 
   setFareParameters () {
-    let remainingBalance = React.findDOMNode(this.refs.balanceInput).value;
-    let maxToSpend = React.findDOMNode(this.refs.maxInput).value;
+    let remainingBalance = findDOMNode(this.refs.balanceInput).value
+    let maxToSpend = findDOMNode(this.refs.maxInput).value
 
-    FareActions.updateFareParameters(remainingBalance, maxToSpend);
+    FareActions.updateFareParameters(remainingBalance, maxToSpend)
 
-    this.setState({remainingBalance, maxToSpend});
+    this.setState({remainingBalance, maxToSpend})
   }
 
   render () {
@@ -36,7 +37,7 @@ export default class FareInput extends React.Component {
           <CurrencyMaskedInput name="max" ref="maxInput" value={this.state.maxToSpend} onChange={this.setFareParameters.bind(this)} required placeholder="0.00"/>
         </section>
       </form>
-    );
+    )
   }
 
 }

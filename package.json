@@ -13,12 +13,16 @@
   "dependencies": {
     "karma": "^0.13.3",
     "normalize.css": "^3.0.2",
-    "react": "^0.13.2",
-    "react-currency-masked-input": "0.0.10",
+    "react": "^0.14.3",
+    "react-currency-masked-input": "^1.0.0",
+    "react-dom": "^0.14.3",
     "redux": "^1.0.0-rc"
   },
   "devDependencies": {
-    "babel": "^5.5.8",
+    "babel-core": "^6.2.1",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-2": "^6.1.18",
     "babelify": "^5.0.3",
     "bl": "^0.9.4",
     "browserify": "^8.1.3",
@@ -42,6 +46,7 @@
     "karma-phantomjs-launcher": "^0.2.0",
     "karma-sinon-chai": "^1.0.0",
     "phantomjs": "^1.9.17",
+    "react-addons-test-utils": "^0.14.3",
     "react-tools": "^0.12.2",
     "through2": "^0.6.3",
     "vinyl": "^0.4.6",

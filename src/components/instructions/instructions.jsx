@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import Fares from '../../stores/fares';
+import React, { Component } from 'react'
+import Fares from '../../stores/fares'
 
 export default class Instructions extends Component {
 
   constructor (props) {
-    super(props);
+    super(props)
 
     this.state = {
       showInstructions : true
-    };
+    }
   }
 
   componentWillMount () {
-    Fares.subscribe(this.updateInstructions.bind(this));
+    Fares.subscribe(this.updateInstructions.bind(this))
   }
 
   updateInstructions () {
-    const { purchaseOptions } = Fares.getState();
+    const { purchaseOptions } = Fares.getState()
 
     this.setState({
       showInstructions : !purchaseOptions.length
-    });
+    })
   }
 
   render(){
@@ -28,7 +28,7 @@ export default class Instructions extends Component {
       <p hidden={!this.state.showInstructions}>
         Enter your MetroCard's remaining balance to calculate the exact amount to put on it. No nickels and dimes wasted.
       </p>
-    );
+    )
   }
 
 }

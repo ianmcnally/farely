@@ -6,9 +6,11 @@ import buffer from 'vinyl-buffer'
 import chalk from 'chalk'
 import confirm from 'gulp-confirm'
 import connect from 'gulp-connect'
+import eslint from 'gulp-eslint'
 import fs from 'fs'
 import gulp from 'gulp'
 import gzip from 'gulp-gzip'
+import jscs from 'gulp-jscs'
 import { Server } from 'karma'
 import minifyCSS from 'gulp-minify-css'
 import { createElement } from 'react'
@@ -88,7 +90,7 @@ gulp.task('style', () => {
 })
 
 gulp.task('watch', () => {
-  gulp.watch(['src/**/*.js*'], ['compile', 'test'])
+  gulp.watch(['src/**/*.js*'], ['compile', 'lint', 'test'])
   gulp.watch(['src/**/*.html*'], ['index.html', 'copy:manifest'])
   gulp.watch(['src/**/*.scss'], ['style', 'copy:manifest'])
 })
@@ -124,6 +126,16 @@ gulp.task('deploy', ['compress:js', 'compress:css'], () => {
     }))
 })
 
-gulp.task('default', ['compile', 'connect', 'watch'])
+gulp.task('default', ['compile', 'connect', 'lint', 'test', 'watch'])
 
-gulp.task('test', ['karma:single'])
+gulp.task('lint',  () => {
+  gulp.src(['src/**/*.js','!node_modules/**'])
+    .pipe(jscs())
+    .pipe(jscs.reporter())
+    .pipe(jscs.reporter('fail'))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+})
+
+gulp.task('test', ['lint', 'karma:single'])

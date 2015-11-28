@@ -21,7 +21,7 @@ describe('Instructions', () => {
     FareActions.updateFareParameters(null, null)
 
     expect(component.state.showInstructions).to.be.true
-    let hiddenAttribute = findDOMNode(component).attributes.getNamedItem('hidden')
+    const hiddenAttribute = findDOMNode(component).attributes.getNamedItem('hidden')
     expect(hiddenAttribute).not.to.be.ok
   })
 
@@ -29,7 +29,7 @@ describe('Instructions', () => {
     FareActions.updateFareParameters('2', '40')
 
     expect(component.state.showInstructions).to.be.false
-    let hiddenAttribute = findDOMNode(component).attributes.getNamedItem('hidden')
+    const hiddenAttribute = findDOMNode(component).attributes.getNamedItem('hidden')
     expect(hiddenAttribute).to.be.ok
   })
 

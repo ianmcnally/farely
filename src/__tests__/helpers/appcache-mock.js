@@ -1,7 +1,7 @@
-import AppCacheManager from '../../services/app_cache_manager';
+import AppCacheManager from '../../services/app_cache_manager'
 
 const {
   stub
-} = sinon;
+} = sinon
 
-before(() => stub(AppCacheManager, 'watchForUpdates'));
+before(() => stub(AppCacheManager, 'watchForUpdates'))

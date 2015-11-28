@@ -4,3 +4,4 @@ export default {
   RIDE_COST : 2.75, // $
   TRANSACTION_MAX : 80 // $
 }
+

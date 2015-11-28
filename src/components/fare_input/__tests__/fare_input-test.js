@@ -51,19 +51,19 @@ describe('FareInput', () => {
     })
 
     it('triggers an update fare parameters action', () => {
-      let updatedValue = '3'
-      let updatedValueMasked = '0.03'
+      const updatedValue = '3'
+      const updatedValueMasked = '0.03'
 
-      Simulate.change(balanceInput, {target: {value: updatedValue}})
+      Simulate.change(balanceInput, { target : { value : updatedValue } })
 
       expect(FareActions.updateFareParameters).to.have.been.calledWith(updatedValueMasked, '40')
     })
 
     it('updates the state fare parameters', () => {
-      let updatedValue = '10'
-      let updatedValueMasked = '0.10'
+      const updatedValue = '10'
+      const updatedValueMasked = '0.10'
 
-      Simulate.change(balanceInput, {target: {value: updatedValue}})
+      Simulate.change(balanceInput, { target : { value : updatedValue } })
 
       expect(fareInput.state.remainingBalance).to.equal(updatedValueMasked)
     })
@@ -84,19 +84,19 @@ describe('FareInput', () => {
     })
 
     it('triggers an update fare parameters action', () => {
-      let updatedValue = '80'
-      let updatedValueMasked = '0.80'
+      const updatedValue = '80'
+      const updatedValueMasked = '0.80'
 
-      Simulate.change(maxInput, {target: {value: updatedValue}})
+      Simulate.change(maxInput, { target : { value : updatedValue } })
 
       expect(FareActions.updateFareParameters).to.have.been.calledWith('', updatedValueMasked)
     })
 
     it('updates the state fare parameters', () => {
-      let updatedValue = '80'
-      let updatedValueMasked = '0.80'
+      const updatedValue = '80'
+      const updatedValueMasked = '0.80'
 
-      Simulate.change(maxInput, {target: {value: updatedValue}})
+      Simulate.change(maxInput, { target : { value : updatedValue } })
 
       expect(fareInput.state.maxToSpend).to.equal(updatedValueMasked)
     })

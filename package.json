@@ -51,7 +51,6 @@
     "karma-sinon-chai": "^1.0.0",
     "phantomjs": "^1.9.17",
     "react-addons-test-utils": "^0.14.3",
-    "react-tools": "^0.12.2",
     "through2": "^0.6.3",
     "vinyl": "^0.4.6",
     "vinyl-buffer": "^1.0.0",

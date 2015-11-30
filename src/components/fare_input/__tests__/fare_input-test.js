@@ -56,7 +56,7 @@ describe('FareInput', () => {
 
       Simulate.change(balanceInput, { target : { value : updatedValue } })
 
-      expect(FareActions.updateFareParameters).to.have.been.calledWith(updatedValueMasked, '40')
+      expect(FareActions.updateFareParameters).to.have.been.calledWith(updatedValueMasked, 40)
     })
 
     it('updates the state fare parameters', () => {
@@ -89,7 +89,7 @@ describe('FareInput', () => {
 
       Simulate.change(maxInput, { target : { value : updatedValue } })
 
-      expect(FareActions.updateFareParameters).to.have.been.calledWith('', updatedValueMasked)
+      expect(FareActions.updateFareParameters).to.have.been.calledWith(null, updatedValueMasked)
     })
 
     it('updates the state fare parameters', () => {

@@ -15,8 +15,8 @@ module.exports = function(config) {
 
   // list of files / patterns to load in the browser
   files: [
-    'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.min.js',
-    'node_modules/react/dist/react-with-addons.min.js',
+    'node_modules/es5-shim/es5-shim.min.js',
+    'node_modules/react/dist/react.min.js',
     'src/__tests__/helpers/*.js',
     'src/**/*.js',
     'src/**/*.jsx'

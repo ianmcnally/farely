@@ -1,6 +1,6 @@
 {
   "name": "farely-react",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "A rebuild of farely.io in React",
   "repository": "https://www.github.com/imcnally/farely-react",
   "main": "Gulpfile.js",

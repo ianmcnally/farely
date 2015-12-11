@@ -4,6 +4,7 @@ import babelify from 'babelify'
 import browserify from 'browserify'
 import buffer from 'vinyl-buffer'
 import chalk from 'chalk'
+import csswring from 'csswring'
 import confirm from 'gulp-confirm'
 import connect from 'gulp-connect'
 import eslint from 'gulp-eslint'
@@ -12,7 +13,6 @@ import gulp from 'gulp'
 import gzip from 'gulp-gzip'
 import jscs from 'gulp-jscs'
 import { Server } from 'karma'
-import minifyCSS from 'gulp-minify-css'
 import precss from 'precss'
 import postcss from 'gulp-postcss'
 import { createElement } from 'react'
@@ -82,6 +82,7 @@ gulp.task('style', () => {
   const processors = [
     autoprefixer({ browsers : ['last 2 versions'], cascade : false }),
     precss,
+    csswring()
   ]
 
   gulp.src('src/main.css')
@@ -101,13 +102,7 @@ gulp.task('compress:js', () => {
     .pipe(gulp.dest('dist'))
 })
 
-gulp.task('compress:css', () => {
-  gulp.src('dist/**/*.css')
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('dist'))
-})
-
-gulp.task('deploy', ['compress:js', 'compress:css'], () => {
+gulp.task('deploy', ['compress:js'], () => {
   let configPath = 'farely-aws.json'
   if (!fs.existsSync(configPath)) {
     return console.log(chalk.bold.red(configPath + ' not found.'))

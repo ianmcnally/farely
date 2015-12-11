@@ -1,8 +1,8 @@
-// global
+/*global*/
 @import 'global/stylesheets/mixins';
 @import 'global/stylesheets/colors';
 @import 'global/stylesheets/typography';
 @import 'global/stylesheets/layout';
-// components
+/*components*/
 @import 'components/fare_calculator';
 @import 'components/footer/footer';

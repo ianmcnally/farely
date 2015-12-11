@@ -1,5 +1,5 @@
 import App from './src/app.jsx'
-import autoprefixer from 'gulp-autoprefixer'
+import autoprefixer from 'autoprefixer'
 import babelify from 'babelify'
 import browserify from 'browserify'
 import buffer from 'vinyl-buffer'
@@ -13,11 +13,12 @@ import gzip from 'gulp-gzip'
 import jscs from 'gulp-jscs'
 import { Server } from 'karma'
 import minifyCSS from 'gulp-minify-css'
+import precss from 'precss'
+import postcss from 'gulp-postcss'
 import { createElement } from 'react'
 import { renderToString } from 'react-dom/server'
 import rename from 'gulp-rename'
 import replace from 'gulp-replace'
-import sass from 'gulp-sass'
 import source from 'vinyl-source-stream'
 import s3 from 'gulp-s3'
 import uglify from 'gulp-uglify'
@@ -78,21 +79,20 @@ gulp.task('karma:single', (done) => {
 })
 
 gulp.task('style', () => {
-  gulp.src('src/main.scss')
-    .pipe(sass({
-      errLogToConsole : true
-    }))
-    .pipe(autoprefixer({
-      browsers : ['last 2 versions'],
-      cascade : false
-    }))
+  const processors = [
+    autoprefixer({ browsers : ['last 2 versions'], cascade : false }),
+    precss,
+  ]
+
+  gulp.src('src/main.css')
+    .pipe(postcss(processors))
     .pipe(gulp.dest('dist/stylesheets'))
 })
 
 gulp.task('watch', () => {
   gulp.watch(['src/**/*.js*'], ['compile', 'lint', 'test'])
   gulp.watch(['src/**/*.html*'], ['index.html', 'copy:manifest'])
-  gulp.watch(['src/**/*.scss'], ['style', 'copy:manifest'])
+  gulp.watch(['src/**/*.css'], ['style', 'copy:manifest'])
 })
 
 gulp.task('compress:js', () => {

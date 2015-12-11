@@ -1,0 +1,10 @@
+@define-mixin placeholder {
+  &.placeholder { @mixin-content }
+  &::-moz-placeholder { @mixin-content }
+  &::-webkit-input-placeholder { @mixin-content }
+  &:-ms-input-placeholder { @mixin-content }
+}
+// Breakpoints
+@define-mixin w-lte768 {
+  @media only screen and (max-width: 768px) { @mixin-content }
+}

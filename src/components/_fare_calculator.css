@@ -28,7 +28,7 @@
     line-height: 1;
     height: 5rem;
     width: 100%;
-    @include placeholder {
+    @mixin placeholder {
       font-color: $grey;
       font-size: 3.3rem;
       line-height: 1;

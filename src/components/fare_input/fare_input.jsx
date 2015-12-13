@@ -25,14 +25,13 @@ export default class FareInput extends Component {
     return (
       <form name="farepurchase">
         <section>
-          <h3>Remaining balance</h3>
+          <h3 id="remaining-balance">Remaining balance</h3>
           <label htmlFor="remaining">$</label>
-          <CurrencyMaskedInput name="remaining" ref="balanceInput" onChange={() => this.setFareParameters()} required placeholder="0.00" autofocus/>
+          <CurrencyMaskedInput aria-labelledby="remaining-balance" name="remaining" ref="balanceInput" onChange={() => this.setFareParameters()} required placeholder="0.00" autofocus/>
         </section>
-        <section>
-          <h3>Max to spend</h3>
+          <h3 id="max-to-spend">Max to spend</h3>
           <label htmlFor="max">$</label>
-          <CurrencyMaskedInput name="max" ref="maxInput" value={this.state.maxToSpend} onChange={() => this.setFareParameters()} required placeholder="0.00"/>
+          <CurrencyMaskedInput aria-labelledby="max-to-spend" name="max" ref="maxInput" value={this.state.maxToSpend} onChange={() => this.setFareParameters()} required placeholder="0.00"/>
         </section>
       </form>
     )

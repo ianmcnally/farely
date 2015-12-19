@@ -91,7 +91,28 @@
         "no-unused-vars": 2,
         "arrow-parens": [2, "always"],
         "arrow-spacing": 2,
-        "object-curly-spacing": [2, "always"]
+        "object-curly-spacing": [2, "always"],
+        "react/jsx-boolean-value": 2,
+        "react/jsx-closing-bracket-location": 2,
+        "react/jsx-curly-spacing": 1,
+        "react/jsx-indent-props": 2,
+        "react/jsx-no-duplicate-props": 1,
+        "react/jsx-no-undef": 2,
+        "jsx-quotes": [2, "prefer-single"],
+        "react/jsx-sort-prop-types": 2,
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 1,
+        "react/no-danger": 1,
+        "react/no-did-mount-set-state": 1,
+        "react/no-did-update-set-state": 1,
+        "react/no-multi-comp": 1,
+        "react/no-unknown-property": 1,
+        "react/prop-types": 1,
+        "react/react-in-jsx-scope": 2,
+        "react/require-extension": 1,
+        "react/self-closing-comp": 1,
+        "react/sort-comp": 1,
+        "react/wrap-multilines": 1
     },
     "env": {
         "es6": true,
@@ -102,7 +123,8 @@
     "globals": {
         "chai": true,
         "expect": true,
-        "sinon": true
+        "sinon": true,
+        "jasmine": true
     },
     "extends": "eslint:recommended",
     "ecmaFeatures": {

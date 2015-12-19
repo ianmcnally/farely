@@ -1,36 +1,67 @@
-import { findDOMNode } from 'react-dom'
-import FareActions from '../../../actions/fare_actions'
-import Instructions from '../instructions.jsx'
+import React, { Component } from 'react'
+import { Instructions, mapStateToProps } from '../instructions.jsx'
 import {
+  findRenderedDOMComponentWithClass,
   renderIntoDocument
 } from 'react-addons-test-utils'
 
 describe('Instructions', () => {
 
-  let component
+  class Wrapper extends Component {
+    render() {
+      return <Instructions {...this.props}/>
+    }
+  }
 
-  beforeEach(() => {
-    component = renderIntoDocument(<Instructions />)
+  context('defaults', () => {
+    let component, isHidden
+    const props = mapStateToProps({ purchaseOptions : [] })
+
+    before(() => {
+      const wrapper = renderIntoDocument(<Wrapper {...props}/>)
+      component = findRenderedDOMComponentWithClass(wrapper, 'instructions')
+      isHidden = component.attributes.getNamedItem('hidden') !== null
+    })
+
+    it('defaults to showing instructions', () => {
+      expect(isHidden).to.be.false
+    })
+
   })
 
-  it('defaults to showing instructions', () => {
-    expect(component.state.showInstructions).to.be.true
+  context('no purchase options', () => {
+    let component, isHidden
+    const props = mapStateToProps({ purchaseOptions : [] })
+
+    beforeEach(() => {
+      const wrapper = renderIntoDocument(<Wrapper {...props}/>)
+      component = findRenderedDOMComponentWithClass(wrapper, 'instructions')
+
+      isHidden = component.attributes.getNamedItem('hidden') !== null
+    })
+
+    it('shows the instructions', () => {
+      expect(isHidden).to.be.false
+    })
+
   })
 
-  it('shows the instructions when there are no purchase options', () => {
-    FareActions.updateFareParameters(null, null)
+  context('purchase options', () => {
+    let component, isHidden
+    const props = mapStateToProps({ purchaseOptions : [{}, {}] })
 
-    expect(component.state.showInstructions).to.be.true
-    const hiddenAttribute = findDOMNode(component).attributes.getNamedItem('hidden')
-    expect(hiddenAttribute).not.to.be.ok
+    beforeEach(() => {
+      const wrapper = renderIntoDocument(<Wrapper {...props}/>)
+      component = findRenderedDOMComponentWithClass(wrapper, 'instructions')
+
+      isHidden = component.attributes.getNamedItem('hidden') !== null
+    })
+
+    it('hides instructions', () => {
+      expect(isHidden).to.be.true
+    })
+
   })
 
-  it('hides instructions when there are purchase options', () => {
-    FareActions.updateFareParameters('2', '40')
-
-    expect(component.state.showInstructions).to.be.false
-    const hiddenAttribute = findDOMNode(component).attributes.getNamedItem('hidden')
-    expect(hiddenAttribute).to.be.ok
-  })
 
 })

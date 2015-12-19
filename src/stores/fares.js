@@ -2,7 +2,13 @@ import { createStore } from 'redux'
 import { FARE_PARAMETER } from '../constants/fare_updates'
 import fareService from '../services/fare'
 
-export default createStore((state = {}, action) => {
+const initialState = {
+  maxToSpend : 40.00,
+  remainingBalance : null,
+  purchaseOptions : []
+}
+
+export default createStore((state = initialState, action) => {
 
   if (action.type === FARE_PARAMETER) {
     let { remainingBalance, maxToSpend } = action

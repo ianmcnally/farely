@@ -5,3 +5,6 @@ const {
 } = sinon
 
 before(() => stub(AppCacheManager, 'watchForUpdates'))
+
+after(() => AppCacheManager.watchForUpdates.restore())
+

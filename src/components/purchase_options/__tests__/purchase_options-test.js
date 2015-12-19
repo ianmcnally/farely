@@ -1,18 +1,9 @@
-import PurchaseOptions from '../purchase_options.jsx'
-import Fares from '../../../stores/fares'
-import FareActions from '../../../actions/fare_actions'
-import {
-  renderIntoDocument,
-  scryRenderedDOMComponentsWithClass
-} from 'react-addons-test-utils'
-
-const {
-  stub
-} = sinon
+import React, { Component } from 'react'
+import { PurchaseOptions, mapStateToProps } from '../purchase_options.jsx'
+import { renderIntoDocument, scryRenderedDOMComponentsWithClass } from 'react-addons-test-utils'
 
 describe('PurchaseOptions', () => {
-
-  let component
+  let items
   const purchaseOptions = [
     {
       amount : 10,
@@ -22,32 +13,25 @@ describe('PurchaseOptions', () => {
       rides : 200
     }
   ]
+  const props = mapStateToProps({ purchaseOptions })
 
-  beforeEach(() => {
-    component = renderIntoDocument(<PurchaseOptions />)
+  class Wrapper extends Component {
+    render() {
+      return <PurchaseOptions {...this.props} />
+    }
+  }
 
-    // mock state, so test doesn't rely on certain purchase options and prices
-    stub(Fares, 'getState').returns({ purchaseOptions })
-  })
-
-  afterEach(() => {
-    Fares.getState.restore()
+  before(() => {
+    const wrapper = renderIntoDocument(<Wrapper {...props} />)
+    items = scryRenderedDOMComponentsWithClass(wrapper, 'purchase-amount')
   })
 
   it('renders an item for each purchase options', () => {
-    FareActions.updateFareParameters('123', '456')
-
-    const items = scryRenderedDOMComponentsWithClass(component, 'purchase-amount')
-
     expect(items).to.be.ok
     expect(items.length).to.equal(purchaseOptions.length)
   })
 
   it('displays the price and amount of rides for an option', () => {
-    FareActions.updateFareParameters('123', '456')
-
-    const items = scryRenderedDOMComponentsWithClass(component, 'purchase-amount')
-
     const text = items[0].textContent
     expect(text).to.equal(`${purchaseOptions[0].amount} for ${purchaseOptions[0].rides} rides`)
   })

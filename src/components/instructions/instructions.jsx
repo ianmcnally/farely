@@ -1,34 +1,13 @@
-import React, { Component } from 'react'
-import Fares from '../../stores/fares'
+import React from 'react'
+import { connect } from 'react-redux'
 
-export default class Instructions extends Component {
+export const Instructions = ({ hidden }) => (
+  <p className='instructions' hidden={hidden}>
+    Enter your MetroCard's remaining balance to calculate the exact amount to put on it. No nickels and dimes wasted.
+  </p>
+)
 
-  constructor (props) {
-    super(props)
+export const mapStateToProps = ({ purchaseOptions }) => ({ hidden : Boolean(purchaseOptions.length) })
 
-    this.state = {
-      showInstructions : true
-    }
-  }
+export default connect(mapStateToProps)(Instructions)
 
-  componentWillMount () {
-    Fares.subscribe(this.updateInstructions.bind(this))
-  }
-
-  updateInstructions () {
-    const { purchaseOptions } = Fares.getState()
-
-    this.setState({
-      showInstructions : !purchaseOptions.length
-    })
-  }
-
-  render(){
-    return (
-      <p hidden={!this.state.showInstructions}>
-        Enter your MetroCard's remaining balance to calculate the exact amount to put on it. No nickels and dimes wasted.
-      </p>
-    )
-  }
-
-}

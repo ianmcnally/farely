@@ -1,25 +1,24 @@
+import React from 'react'
 import { findDOMNode } from 'react-dom'
-import FareInput from '../fare_input.jsx'
+import { FareInput, mapStateToProps } from '../fare_input.jsx'
 import FareActions from '../../../actions/fare_actions'
-
 import {
   renderIntoDocument,
   Simulate
 } from 'react-addons-test-utils'
-
 const {
   spy
 } = sinon
 
 describe('FareInput', () => {
-
   let fareInput
+  const props = mapStateToProps({ maxToSpend : 40.00 })
 
   beforeEach(() => {
-    fareInput = renderIntoDocument(<FareInput />)
+    fareInput = renderIntoDocument(<FareInput {...props} />)
   })
 
-  describe('initialization', () => {
+  context('initialization', () => {
 
     it('sets the remainingBalance input value to null', () => {
       const { balanceInput } = fareInput.refs
@@ -37,7 +36,7 @@ describe('FareInput', () => {
 
   })
 
-  describe('setting the remaining balance', () => {
+  context('setting the remaining balance', () => {
 
     let balanceInput
 
@@ -59,18 +58,9 @@ describe('FareInput', () => {
       expect(FareActions.updateFareParameters).to.have.been.calledWith(updatedValueMasked, 40)
     })
 
-    it('updates the state fare parameters', () => {
-      const updatedValue = '10'
-      const updatedValueMasked = '0.10'
-
-      Simulate.change(balanceInput, { target : { value : updatedValue } })
-
-      expect(fareInput.state.remainingBalance).to.equal(updatedValueMasked)
-    })
-
   })
 
-  describe('setting the spend maximum', () => {
+  context('setting the spend maximum', () => {
 
     let maxInput
 

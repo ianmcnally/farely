@@ -1,3 +1,5 @@
+/*eslint-disable no-console */
+
 import App from './src/app.jsx'
 import autoprefixer from 'autoprefixer'
 import babelify from 'babelify'
@@ -13,6 +15,7 @@ import gulp from 'gulp'
 import gzip from 'gulp-gzip'
 import jscs from 'gulp-jscs'
 import { Server } from 'karma'
+import { join } from 'path'
 import precss from 'precss'
 import postcss from 'gulp-postcss'
 import { createElement } from 'react'
@@ -23,7 +26,7 @@ import source from 'vinyl-source-stream'
 import s3 from 'gulp-s3'
 import uglify from 'gulp-uglify'
 
-const karmaConfig = __dirname + '/karma.conf.js'
+const karmaConfig = join(__dirname, 'karma.conf.js')
 
 gulp.task('compile', ['copy:icons', 'copy:normalize', 'index.html', 'copy:manifest', 'javascript', 'style'])
 
@@ -103,9 +106,9 @@ gulp.task('compress:js', () => {
 })
 
 gulp.task('deploy', ['compress:js'], () => {
-  let configPath = 'farely-aws.json'
+  const configPath = 'farely-aws.json'
   if (!fs.existsSync(configPath)) {
-    return console.log(chalk.bold.red(configPath + ' not found.'))
+    return console.log(chalk.bold.red(`${configPath} not found.`))
   }
   gulp.src('./dist/**')
     .pipe(confirm({
@@ -123,14 +126,17 @@ gulp.task('deploy', ['compress:js'], () => {
 
 gulp.task('default', ['compile', 'connect', 'lint', 'test', 'watch'])
 
-gulp.task('lint',  () => {
+gulp.task('lint', () => {
   gulp.src(['src/**/*.js','!node_modules/**'])
     .pipe(jscs())
-    //.pipe(jscs.reporter())
-    //.pipe(jscs.reporter('fail'))
+    .pipe(jscs.reporter())
+    .pipe(jscs.reporter('fail'))
     .pipe(eslint())
     .pipe(eslint.format())
-    //.pipe(eslint.failAfterError())
+    .pipe(eslint.failAfterError())
 })
 
 gulp.task('test', ['lint', 'karma:single'])
+
+/*eslint-enable no-console */
+

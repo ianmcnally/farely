@@ -8,13 +8,14 @@ import {
 describe('Instructions', () => {
 
   class Wrapper extends Component {
-    render() {
+    render () {
       return <Instructions {...this.props}/>
     }
   }
 
   context('defaults', () => {
-    let component, isHidden
+    let component
+    let isHidden
     const props = mapStateToProps({ purchaseOptions : [] })
 
     before(() => {
@@ -30,7 +31,8 @@ describe('Instructions', () => {
   })
 
   context('no purchase options', () => {
-    let component, isHidden
+    let component
+    let isHidden
     const props = mapStateToProps({ purchaseOptions : [] })
 
     beforeEach(() => {
@@ -47,7 +49,8 @@ describe('Instructions', () => {
   })
 
   context('purchase options', () => {
-    let component, isHidden
+    let component
+    let isHidden
     const props = mapStateToProps({ purchaseOptions : [{}, {}] })
 
     beforeEach(() => {
@@ -62,6 +65,5 @@ describe('Instructions', () => {
     })
 
   })
-
 
 })

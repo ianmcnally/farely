@@ -16,7 +16,7 @@ describe('PurchaseOptions', () => {
   const props = mapStateToProps({ purchaseOptions })
 
   class Wrapper extends Component {
-    render() {
+    render () {
       return <PurchaseOptions {...this.props} />
     }
   }

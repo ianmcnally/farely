@@ -12,7 +12,6 @@
   "author": "Ian McNally <ianmcnally@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "karma": "^0.13.3",
     "normalize.css": "^3.0.2",
     "react": "^0.14.3",
     "react-currency-masked-input": "^1.0.1",
@@ -48,6 +47,7 @@
     "gulp-uglify": "^1.1.0",
     "harmonize": "^1.4.1",
     "jasmine-core": "^2.3.4",
+    "karma": "^0.13.3",
     "karma-browserify": "^4.2.1",
     "karma-mocha": "^0.2.0",
     "karma-phantomjs2-launcher": "^0.3.2",

@@ -95,7 +95,7 @@
         "react/jsx-boolean-value": 2,
         "react/jsx-closing-bracket-location": 2,
         "react/jsx-curly-spacing": 1,
-        "react/jsx-indent-props": 2,
+        "react/jsx-indent-props": [2, 2],
         "react/jsx-no-duplicate-props": 1,
         "react/jsx-no-undef": 2,
         "jsx-quotes": [2, "prefer-single"],

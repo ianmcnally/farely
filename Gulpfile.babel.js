@@ -76,8 +76,8 @@ gulp.task('javascript', ['index.html'], () => {
 
 gulp.task('karma:single', (done) => {
   new Server({
-    configFile: karmaConfig,
-    singleRun: true
+    configFile : karmaConfig,
+    singleRun : true
   }, done).start()
 })
 
@@ -112,14 +112,14 @@ gulp.task('deploy', ['compress:js'], () => {
   }
   gulp.src('./dist/**')
     .pipe(confirm({
-      question: 'You\'re sure you want to release? (y/n)',
-      input: '_key:y' // Proceed only if 'y' is entered
+      question : 'You\'re sure you want to release? (y/n)',
+      input : '_key:y' // Proceed only if 'y' is entered
     }))
     .pipe(gzip())
     .pipe(s3(JSON.parse(fs.readFileSync(configPath)), {
-      uploadPath: '/',
+      uploadPath : '/',
       headers : {
-        'x-amz-acl': 'public-read'
+        'x-amz-acl' : 'public-read'
       }
     }))
 })
@@ -127,7 +127,7 @@ gulp.task('deploy', ['compress:js'], () => {
 gulp.task('default', ['compile', 'connect', 'lint', 'test', 'watch'])
 
 gulp.task('lint', () => {
-  gulp.src(['src/**/*.js','!node_modules/**'])
+  gulp.src(['src/**/*.{js,jsx}', '!node_modules/**'])
     .pipe(jscs())
     .pipe(jscs.reporter())
     .pipe(jscs.reporter('fail'))
@@ -139,4 +139,3 @@ gulp.task('lint', () => {
 gulp.task('test', ['lint', 'karma:single'])
 
 /*eslint-enable no-console */
-

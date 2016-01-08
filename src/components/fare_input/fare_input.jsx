@@ -25,10 +25,21 @@ export class FareInput extends Component {
         <section>
           <h3 id='remaining-balance'>Remaining balance</h3>
           <label htmlFor='remaining'>$</label>
-          <CurrencyMaskedInput aria-labelledby='remaining-balance' name='remaining' ref='balanceInput' onChange={() => this.setFareParameters()} required placeholder='0.00' autofocus/>
+          <CurrencyMaskedInput
+            aria-labelledby='remaining-balance'
+            name='remaining'
+            ref='balanceInput'
+            onChange={() => this.setFareParameters()} required placeholder='0.00' autofocus
+          />
           <h3 id='max-to-spend'>Max to spend</h3>
           <label htmlFor='max'>$</label>
-          <CurrencyMaskedInput aria-labelledby='max-to-spend' name='max' ref='maxInput' value={this.state.maxToSpend} onChange={() => this.setFareParameters()} required placeholder='0.00'/>
+          <CurrencyMaskedInput
+            aria-labelledby='max-to-spend'
+            name='max'
+            ref='maxInput'
+            value={this.state.maxToSpend}
+            onChange={() => this.setFareParameters()} required placeholder='0.00'
+          />
         </section>
       </form>
     )
@@ -39,4 +50,3 @@ export class FareInput extends Component {
 export const mapStateToProps = ({ maxToSpend }) => ({ maxToSpend })
 
 export default connect(mapStateToProps)(FareInput)
-

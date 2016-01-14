@@ -18,7 +18,7 @@ export default class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <section className="fare-calculator">
+        <section className='fare-calculator'>
           <FareInput />
           <PurchaseOptions />
           <Instructions />

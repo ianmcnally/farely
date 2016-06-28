@@ -51,7 +51,7 @@ gulp.task('copy:manifest', () => {
 
 gulp.task('copy:normalize', () => {
   gulp.src('node_modules/normalize.css/normalize.css')
-    .pipe(gulp.dest('dist/stylesheets/'))
+    .pipe(gulp.dest('dist/'))
 })
 
 gulp.task('index.html', () => {
@@ -71,7 +71,7 @@ gulp.task('javascript', ['index.html'], () => {
     })
     .pipe(source('main.js'))
     .pipe(buffer())
-    .pipe(gulp.dest('./dist/javascript'))
+    .pipe(gulp.dest('./dist'))
 })
 
 gulp.task('karma:single', (done) => {
@@ -90,7 +90,7 @@ gulp.task('style', () => {
 
   gulp.src('src/main.css')
     .pipe(postcss(processors))
-    .pipe(gulp.dest('dist/stylesheets'))
+    .pipe(gulp.dest('dist'))
 })
 
 gulp.task('watch', () => {

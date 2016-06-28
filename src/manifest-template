@@ -3,10 +3,10 @@ CACHE MANIFEST
 
 CACHE:
 /index.html
-/javascript/main.js
+/main.js
 http://fonts.googleapis.com/css?family=Source+Sans+Pro:300
-/stylesheets/main.css
-/stylesheets/normalize.css
+/main.css
+/normalize.css
 /icon.png
 /favicon.ico
 

@@ -5,9 +5,11 @@
   "repository": "https://www.github.com/imcnally/farely-react",
   "main": "Gulpfile.js",
   "scripts": {
+    "compile": "gulp compile",
     "lint": "gulp lint",
     "start": "gulp",
-    "test": "gulp test"
+    "test": "gulp test",
+    "deploy": "gulp compile && git branch -D gh-pages && git checkout -b gh-pages && cp -r dist/. . && git add -f . && git commit -a -m $npm_package_version && git push -f -u origin gh-pages && git checkout -"
   },
   "author": "Ian McNally <ianmcnally@gmail.com>",
   "license": "ISC",

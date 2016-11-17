@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Instructions, mapStateToProps } from '../instructions.jsx'
+import { Instructions, mapStateToProps } from '../instructions'
 import {
   findRenderedDOMComponentWithClass,
   renderIntoDocument

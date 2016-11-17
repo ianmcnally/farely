@@ -1,6 +1,6 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
-import { FareInput, mapStateToProps } from '../fare_input.jsx'
+import { FareInput, mapStateToProps } from '../fare_input'
 import FareActions from '../../../actions/fare_actions'
 import {
   renderIntoDocument,

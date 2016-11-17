@@ -1,6 +1,6 @@
 /*eslint-disable no-console */
 
-import App from './src/app.jsx'
+import App from './src/app.js'
 import autoprefixer from 'autoprefixer'
 import babelify from 'babelify'
 import browserify from 'browserify'
@@ -63,7 +63,7 @@ gulp.task('index.html', () => {
 })
 
 gulp.task('javascript', ['index.html'], () => {
-  browserify('./src/app.jsx')
+  browserify('./src/app.js')
     .transform(babelify)
     .bundle()
     .on('error', (err) => {
@@ -127,7 +127,7 @@ gulp.task('deploy', ['compress:js'], () => {
 gulp.task('default', ['compile', 'connect', 'lint', 'test', 'watch'])
 
 gulp.task('lint', () => {
-  gulp.src(['src/**/*.{js,jsx}', '!node_modules/**'])
+  gulp.src(['src/**/*.{js}', '!node_modules/**'])
     .pipe(jscs())
     .pipe(jscs.reporter())
     .pipe(jscs.reporter('fail'))

@@ -18,22 +18,20 @@ module.exports = function(config) {
     'node_modules/es5-shim/es5-shim.min.js',
     'node_modules/react/dist/react.min.js',
     'src/__tests__/helpers/*.js',
-    'src/**/*.js',
-    'src/**/*.jsx'
+    'src/**/*.js'
   ],
 
 
   // list of files to exclude
   exclude: [
-    'src/app.jsx'
+    'src/app.js'
   ],
 
 
   // preprocess matching files before serving them to the browser
   // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
   preprocessors: {
-    'src/**/*.js': ['browserify'],
-    'src/**/*.jsx': ['browserify']
+    'src/**/*.js': ['browserify']
   },
 
   // test results reporter to use

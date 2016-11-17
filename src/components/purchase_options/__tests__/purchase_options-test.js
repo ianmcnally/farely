@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { PurchaseOptions, mapStateToProps } from '../purchase_options.jsx'
+import { PurchaseOptions, mapStateToProps } from '../purchase_options'
 import { renderIntoDocument, scryRenderedDOMComponentsWithClass } from 'react-addons-test-utils'
 
 describe('PurchaseOptions', () => {

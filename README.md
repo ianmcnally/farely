@@ -1,5 +1,7 @@
 # farely-react
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ianmcnally/farely.svg)](https://greenkeeper.io/)
+
 A port to React of [Farely](http://github.com/imcnally/farely)
 
 ## Setup
